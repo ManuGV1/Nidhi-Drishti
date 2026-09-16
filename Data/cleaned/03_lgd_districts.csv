@@ -1,0 +1,786 @@
+state_code,state_name_english,state_name_local,state_census2011_code,district_code,district_name_english,district_name_local,district_census2011_code
+32,Kerala,KERALA,32.0,554,Alappuzha,à´†à´²à´ªàµà´ªàµà´´,598.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,121,Ambedkar Nagar,AMBEDKAR NAGAR,178.0
+3,Punjab,PUNJAB,3.0,27,Amritsar,AMRITSAR,49.0
+24,Gujarat,GUJARAT,24.0,672,Arvalli,,0.0
+10,Bihar,BIHAR,10.0,611,Arwal,à¤…à¤°à¤µà¤²,240.0
+10,Bihar,BIHAR,10.0,189,Aurangabad,à¤”à¤°à¤‚à¤—à¤¾à¤¬à¤¾à¤¦,235.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,125,Bahraich,BAHRAICH,180.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,646,Balod,à¤¬à¤¾à¤²à¥‹à¤¦,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,127,Balrampur,BALRAMPUR,182.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,649,Balrampur-Ramanujganj,à¤¬à¤²à¤°à¤¾à¤®à¤ªà¥à¤°-à¤°à¤¾à¤®à¤¾à¤¨à¥à¤œà¤—à¤‚à¤œ,0.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,623,Bandipora,BANDIPORA,9.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,470,Beed,à¤¬à¥€à¤¡,523.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,650,Bemetara,à¤¬à¥‡à¤®à¥‡à¤¤à¤°à¤¾,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,525,Bengaluru Urban,à²¬à³†à²‚à²—à²³à³‚à²°à³,572.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,179,Bhadohi,BHADOHI,198.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,471,Bhandara,à¤­à¤‚à¤¡à¤¾à¤°à¤¾,506.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,395,Bhind,à¤­à¤¿à¤£à¥à¤¡,420.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,636,Bijapur,à¤¬à¥€à¤œà¤¾à¤ªà¥à¤°,417.0
+24,Gujarat,GUJARAT,24.0,676,Botad,BOTAD,0.0
+5,Uttarakhand,UTTARAKHAND,5.0,47,Chamoli,CHAMOLI,57.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,135,Chandauli,CHANDAULI,196.0
+14,Manipur,MANIPUR,14.0,253,Chandel,CHANDEL,280.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,473,Chandrapur,à¤šà¤‚à¤¦à¥à¤°à¤ªà¥‚à¤°,509.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,398,Chhatarpur,à¤›à¥à¤¤à¤°à¤ªà¥à¤°,425.0
+24,Gujarat,GUJARAT,24.0,668,Chhotaudepur,CHHOTAUDEPUR,0.0
+24,Gujarat,GUJARAT,24.0,445,Dahod,DAHOD,485.0
+19,West Bengal,WEST BENGAL,19.0,310,Dakshin Dinajpur,DAKSHIN DINAJPUR,331.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,400,Damoh,à¤¦à¤®à¥‹à¤¹,428.0
+24,Gujarat,GUJARAT,24.0,444,Dangs,DANGS,489.0
+19,West Bengal,WEST BENGAL,19.0,309,Darjeeling,DARJEELING,327.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,535,Davangere,à²¦à²¾à²µà²£à²—à³†à²°à³†,567.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,269,Dhalai,à¦§à¦²à¦¾à¦‡,291.0
+21,Odisha,ODISHA,21.0,352,Dhenkanal,DHENKANAL,383.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,404,Dindori,à¤¡à¤¿à¤‚à¤¡à¥‹à¤°à¥€,453.0
+8,Rajasthan,RAJASTHAN,8.0,769,Dudu,à¤¦à¥‚à¤¦à¥‚,
+17,Meghalaya,MEGHALAYA,17.0,657,East Jaintia Hills,EAST JAINTIA HILLS,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,748,Eluru,Eluru,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,573,Erode,ERODE,610.0
+3,Punjab,PUNJAB,3.0,651,Fazilka,,0.0
+3,Punjab,PUNJAB,3.0,31,Ferozepur,FEROZEPUR,43.0
+24,Gujarat,GUJARAT,24.0,446,Gandhinagar,GANDHINAGAR,473.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,328,Garhwa,à¤—à¥à¤µà¤¾,346.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,645,Gariyaband,à¤—à¤°à¤¿à¤¯à¤¾à¤¬à¤‚à¤¦,0.0
+10,Bihar,BIHAR,10.0,196,Gaya,à¤—à¤¯à¤¾,236.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,654,Gomati,à¦—à§‹à¦®à¦¤à¦¿,0.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,331,Gumla,à¤—à¥à¤®à¤²à¤¾,366.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,17,Hamirpur,HAMIRPUR,28.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,686,Hanumakonda,à°¹à°¨à±à°®à°•à±Šà°‚à°¡,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,408,Harda,à¤¹à¤°à¤¦à¤¾,448.0
+5,Uttarakhand,UTTARAKHAND,5.0,50,Haridwar,HARIDWAR,68.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,539,Hassan,à²¹à²¾à²¸à²¨,574.0
+21,Odisha,ODISHA,21.0,355,Jagatsinghapur,JAGATSINGHAPUR,380.0
+8,Rajasthan,RAJASTHAN,8.0,102,Jaipur,JAIPUR,110.0
+8,Rajasthan,RAJASTHAN,8.0,104,Jalore,JALORE,116.0
+19,West Bengal,WEST BENGAL,19.0,314,Jalpaiguri,JALPAIGURI,328.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,687,Jayashankar Bhupalapally,à°œà°¯à°¶à°‚à°•à°°à± à°­à±‚à°ªà°¾à°²à°ªà°²à±à°²à°¿,0.0
+8,Rajasthan,RAJASTHAN,8.0,105,Jhalawar,JHALAWAR,129.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,153,Jhansi,JHANSI,166.0
+21,Odisha,ODISHA,21.0,357,Jharsuguda,JHARSUGUDA,371.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,382,Kabeerdham,à¤•à¤¬à¥€à¤°à¤§à¤¾à¤®,407.0
+19,West Bengal,WEST BENGAL,19.0,702,Kalimpong,KALIMPONG,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,156,Kanpur Dehat,KANPUR DEHAT,163.0
+8,Rajasthan,RAJASTHAN,8.0,108,Karauli,KARAULI,107.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,508,Karimnagar,à°•à°°à±€à°‚à°¨à°—à°°à±,534.0
+10,Bihar,BIHAR,10.0,201,Katihar,à¤•à¤Ÿà¤¿à¤¹à¤¾à¤°,212.0
+21,Odisha,ODISHA,21.0,360,Kendrapara,KENDRAPARA,379.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,414,Khargone (West Nimar),à¤–à¤°à¤—à¥‹à¤¨ (à¤ªà¤¶à¥à¤šà¤¿à¤® à¤¨à¤¿à¤®à¤¾à¥œ),440.0
+24,Gujarat,GUJARAT,24.0,450,Kheda,KHEDA,483.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,159,Kheri,KHERI,153.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,652,Khowai,à¦–à§‹à§Ÿà¦¾à¦‡,0.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,606,Khunti,à¤–à¥‚à¤‚à¤Ÿà¥€,365.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,620,Kishtwar,,18.0
+15,Mizoram,MIZORAM,15.0,263,Kolasib,KOLASIB,282.0
+19,West Bengal,WEST BENGAL,19.0,315,Kolkata,KOLKATA,342.0
+32,Kerala,KERALA,32.0,559,Kollam,à´•àµŠà´²àµà´²à´‚,600.0
+8,Rajasthan,RAJASTHAN,8.0,109,Kota,KOTA,127.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,160,Kushinagar,KUSHINAGAR,189.0
+31,Lakshadweep,LAKSHADWEEP,31.0,553,Lakshadweep District,LAKSHADWEEP DISTRICT,587.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,161,Lalitpur,LALITPUR,167.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,335,Latehar,à¤²à¤¾à¤¤à¥‡à¤¹à¤¾à¤°,359.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,234,Lohit,LOHIT,259.0
+13,Nagaland,NAGALAND,13.0,615,Longleng,,268.0
+10,Bihar,BIHAR,10.0,206,Madhubani,à¤®à¤§à¥à¤¬à¤¨à¥€,207.0
+33,Tamil Nadu,TAMIL NADU,33.0,578,Madurai,MADURAI,623.0
+6,Haryana,HARYANA,6.0,69,Mahendragarh,MAHENDRAGARH,84.0
+24,Gujarat,GUJARAT,24.0,669,Mahisagar,àª®àª¹àª¿àª¸àª¾àª—àª°,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,784,Maihar,à¤®à¥ˆà¤¹à¤°,
+9,Uttar Pradesh,UTTAR PRADESH,9.0,166,Mainpuri,MAINPURI,148.0
+18,Assam,ASSAM,18.0,706,Majuli,,0.0
+32,Kerala,KERALA,32.0,562,Malappuram,à´®à´²à´ªàµà´ªàµà´±à´‚,592.0
+19,West Bengal,WEST BENGAL,19.0,316,Malda,MALDA,332.0
+21,Odisha,ODISHA,21.0,364,Malkangiri,MALKANGIRI,399.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,684,Mancherial,à°®à°‚à°šà°¿à°°à±à°¯à°¾à°²à±,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,168,Mau,MAU,192.0
+13,Nagaland,NAGALAND,13.0,247,Mon,MON,261.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,720,Mulugu,à°®à±à°²à±à°—à±,0.0
+10,Bihar,BIHAR,10.0,207,Munger,à¤®à¥à¤‚à¤—à¥‡à¤°,226.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,545,Mysuru,à²®à³ˆà²¸à³‚à²°à³,577.0
+33,Tamil Nadu,TAMIL NADU,33.0,579,Nagapattinam,NAGAPATTINAM,618.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,484,Nagpur,à¤¨à¤¾à¤—à¤ªà¥‚à¤°,505.0
+5,Uttarakhand,UTTARAKHAND,5.0,51,Nainital,NAINITAL,66.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,409,Narmadapuram,à¤¨à¤°à¥à¤®à¤¦à¤¾à¤ªà¥à¤°à¤®,449.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,487,Nashik,à¤¨à¤¾à¤¶à¤¿à¤•,516.0
+24,Gujarat,GUJARAT,24.0,453,Navsari,NAVSARI,490.0
+14,Manipur,MANIPUR,14.0,714,Noney,NONEY,0.0
+7,Delhi,DELHI,7.0,81,North East,NORTH EAST,92.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,270,North Tripura,à¦‰à¦¤à§à¦¤à¦° à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,292.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,749,Ntr,NTR,0.0
+32,Kerala,KERALA,32.0,563,Palakkad,à´ªà´¾à´²à´•àµà´•à´¾à´Ÿàµ,593.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,338,Palamu,à¤ªà¤²à¤¾à¤®à¥‚,358.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,665,Palghar,à¤ªà¤¾à¤²à¤˜à¤°,0.0
+6,Haryana,HARYANA,6.0,70,Panchkula,PANCHKULA,69.0
+6,Haryana,HARYANA,6.0,71,Panipat,PANIPAT,75.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,743,Parvathipuram Manyam,Parvathipuram Manyam,0.0
+3,Punjab,PUNJAB,3.0,662,Pathankot,PATHANKOT,0.0
+5,Uttarakhand,UTTARAKHAND,5.0,53,Pithoragarh,PITHORAGARH,62.0
+10,Bihar,BIHAR,10.0,213,Purbi Champaran,à¤ªà¥‚à¤°à¥à¤µà¥€ à¤šà¤‚à¤ªà¤¾à¤°à¤£,204.0
+21,Odisha,ODISHA,21.0,369,Puri,PURI,387.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,421,Raisen,à¤°à¤¾à¤¯à¤¸à¥‡à¤¨,446.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,518,Ranga Reddy,à°°à°‚à°—à°¾ à°°à±†à°¡à±à°¡à°¿,537.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,627,Reasi,REASI,20.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,425,Sagar,à¤¸à¤¾à¤—à¤°,427.0
+10,Bihar,BIHAR,10.0,217,Samastipur,à¤¸à¤®à¤¸à¥à¤¤à¥€à¤ªà¥à¤°,221.0
+3,Punjab,PUNJAB,3.0,43,Sangrur,SANGRUR,53.0
+3,Punjab,PUNJAB,3.0,608,S.A.S Nagar,,52.0
+3,Punjab,PUNJAB,3.0,40,Shahid Bhagat Singh Nagar,Shahid Bhagat Singh Nagar,39.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,182,Siddharthnagar,SIDDHARTHNAGAR,184.0
+8,Rajasthan,RAJASTHAN,8.0,114,Sikar,SIKAR,111.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,495,Sindhudurg,à¤¸à¤¿à¤‚à¤§à¥à¤¦à¥à¤°à¥à¤—,529.0
+8,Rajasthan,RAJASTHAN,8.0,115,Sirohi,SIROHI,117.0
+6,Haryana,HARYANA,6.0,74,Sirsa,SIRSA,79.0
+33,Tamil Nadu,TAMIL NADU,33.0,585,Sivaganga,SIVAGANGA,622.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,184,Sonbhadra,SONBHADRA,200.0
+21,Odisha,ODISHA,21.0,372,Sonepur,SONEPUR,392.0
+19,West Bengal,WEST BENGAL,19.0,304,South 24 Parganas,SOUTH 24 Parganas,343.0
+30,Goa,GOA,30.0,552,South Goa,SOUTH GOA,586.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,696,Suryapet,à°¸à±‚à°°à±à°¯à°¾à°ªà±‡à°Ÿ,0.0
+14,Manipur,MANIPUR,14.0,716,Tengnoupal,TENGNOUPAL,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,588,Theni,THENI,624.0
+33,Tamil Nadu,TAMIL NADU,33.0,590,Thiruvarur,THIRUVARUR,619.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,434,Tikamgarh,à¤Ÿà¥€à¤•à¤®à¤—à¤¢à¤¼,424.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,655,Unakoti,à¦Šà¦¨à¦•à§‹à¦Ÿà¦¿,0.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,241,Upper Subansiri,UPPER SUBANSIRI,249.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,187,Varanasi,VARANASI,197.0
+33,Tamil Nadu,TAMIL NADU,33.0,597,Virudhunagar,VIRUDHUNAGAR,625.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,498,Wardha,à¤µà¤°à¥à¤§à¤¾,504.0
+17,Meghalaya,MEGHALAYA,17.0,279,West Khasi Hills,WEST KHASI HILLS,296.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,272,West Tripura,à¦ªà¦¶à§à¦šà¦¿à¦® à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,289.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,504,Y.S.R.,,551.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,667,Agar-Malwa,à¤†à¤—à¤°-à¤®à¤¾à¤²à¤µà¤¾,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,118,Agra,AGRA,146.0
+8,Rajasthan,RAJASTHAN,8.0,86,Ajmer,AJMER,119.0
+19,West Bengal,WEST BENGAL,19.0,664,Alipurduar,,0.0
+5,Uttarakhand,UTTARAKHAND,5.0,45,Almora,ALMORA,64.0
+6,Haryana,HARYANA,6.0,58,Ambala,AMBALA,70.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,468,Amravati,à¤…à¤®à¤°à¤¾à¤µà¤¤à¥€,503.0
+24,Gujarat,GUJARAT,24.0,439,Amreli,AMRELI,480.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,1,Anantnag,ANANTNAG,14.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,753,Annamayya,Annamayya,0.0
+18,Assam,ASSAM,18.0,616,Baksa,,324.0
+21,Odisha,ODISHA,21.0,346,Baleshwar,BALESHWAR,377.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,126,Ballia,BALLIA,193.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,644,Balodabazar-Bhatapara,à¤¬à¤²à¥Œà¤¦à¤¾à¤¬à¤¾à¤œà¤¾à¤°-à¤­à¤¾à¤Ÿà¤¾à¤ªà¤¾à¤°à¤¾,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,128,Banda,BANDA,170.0
+10,Bihar,BIHAR,10.0,190,Banka,à¤¬à¤¾à¤‚à¤•à¤¾,225.0
+19,West Bengal,WEST BENGAL,19.0,305,Bankura,BANKURA,339.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,3,Baramulla,BARAMULLA,8.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,130,Bareilly,BAREILLY,150.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,393,Barwani,à¤¬à¤¡à¤¼à¤µà¤¾à¤¨à¥€,441.0
+3,Punjab,PUNJAB,3.0,28,Bathinda,BATHINDA,46.0
+10,Bihar,BIHAR,10.0,191,Begusarai,à¤¬à¥‡à¤—à¥‚à¤¸à¤°à¤¾à¤¯,222.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,527,Belagavi,à²¬à³†à²³à²—à²¾à²µà²¿,555.0
+10,Bihar,BIHAR,10.0,192,Bhagalpur,à¤­à¤¾à¤—à¤²à¤ªà¥à¤°,224.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,375,Bilaspur,à¤¬à¤¿à¤²à¤¾à¤¸à¤ªà¥à¤°,406.0
+14,Manipur,MANIPUR,14.0,252,Bishnupur,BISHNUPUR,275.0
+18,Assam,ASSAM,18.0,705,Biswanath,,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,133,Budaun,BUDAUN,149.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,134,Bulandshahr,BULANDSHAHR,142.0
+8,Rajasthan,RAJASTHAN,8.0,94,Bundi,BUNDI,121.0
+18,Assam,ASSAM,18.0,282,Cachar,CACHAR,316.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,531,Chamarajanagara,à²šà²¾à²®à²°à²¾à²œà²¨à²—à²°,578.0
+5,Uttarakhand,UTTARAKHAND,5.0,48,Champawat,CHAMPAWAT,65.0
+18,Assam,ASSAM,18.0,708,Charaideo,,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,568,Chennai,CHENNAI,603.0
+18,Assam,ASSAM,18.0,612,Chirang,,320.0
+33,Tamil Nadu,TAMIL NADU,33.0,569,Coimbatore,COIMBATORE,632.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,401,Datia,à¤¦à¤¤à¤¿à¤¯à¤¾,422.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,325,Dhanbad,à¤§à¤¨à¤¬à¤¾à¤¦,354.0
+33,Tamil Nadu,TAMIL NADU,33.0,571,Dharmapuri,DHARMAPURI,630.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,536,Dharwad,à²§à²¾à²°à²µà²¾à²¡,562.0
+8,Rajasthan,RAJASTHAN,8.0,98,Dholpur,DHOLPUR,106.0
+18,Assam,ASSAM,18.0,286,Dibrugarh,DIBRUGARH,310.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,378,Durg,à¤¦à¥à¤°à¥à¤—,409.0
+17,Meghalaya,MEGHALAYA,17.0,273,East Garo Hills,EAST GARO HILLS,294.0
+3,Punjab,PUNJAB,3.0,29,Faridkot,FARIDKOT,45.0
+3,Punjab,PUNJAB,3.0,30,Fatehgarh Sahib,FATEHGARH SAHIB,40.0
+21,Odisha,ODISHA,21.0,354,Ganjam,GANJAM,388.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,144,Gautam Buddha Nagar,GAUTAM BUDDHA NAGAR,141.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,146,Ghazipur,GHAZIPUR,195.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,330,Godda,à¤—à¥‹à¤¡à¥à¤¡à¤¾,351.0
+6,Haryana,HARYANA,6.0,62,Gurugram,GURUGRAM,86.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,661,Hapur,HAPUR,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,163,Hathras,HATHRAS,144.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,540,Haveri,à²¹à²¾à²µà³‡à²°à²¿,564.0
+6,Haryana,HARYANA,6.0,63,Hisar,HISAR,80.0
+15,Mizoram,MIZORAM,15.0,726,Hnahthial,,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,507,Hyderabad,à°¹à±†à±–à°¦à°°à°¾à°¬à°¾à°¦à±,536.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,151,Jalaun,JALAUN,165.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,479,Jalna,à¤œà¤¾à¤²à¤¨à¤¾,514.0
+24,Gujarat,GUJARAT,24.0,447,Jamnagar,JAMNAGAR,477.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,380,Jashpur,à¤œà¤¶à¤ªà¥à¤°,402.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,412,Jhabua,à¤à¤¾à¤¬à¥à¤†,464.0
+6,Haryana,HARYANA,6.0,65,Jind,JIND,77.0
+14,Manipur,MANIPUR,14.0,713,Jiribam,,0.0
+8,Rajasthan,RAJASTHAN,8.0,107,Jodhpur,JODHPUR,113.0
+8,Rajasthan,RAJASTHAN,8.0,778,Jodhpur (Gramin),à¤œà¥‹à¤§à¤ªà¥à¤° (à¤—à¥à¤°à¤¾à¤®à¥€à¤£),
+18,Assam,ASSAM,18.0,290,Jorhat,JORHAT,312.0
+24,Gujarat,GUJARAT,24.0,449,Kachchh,KACHCHH,468.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,746,Kakinada,Kakinada,0.0
+21,Odisha,ODISHA,21.0,358,Kalahandi,KALAHANDI,395.0
+33,Tamil Nadu,TAMIL NADU,33.0,729,Kallakurichi,à®•à®³à¯à®³à®•à¯à®•à¯à®±à®¿à®šà¯à®šà®¿,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,685,Kamareddy,à°•à°¾à°®à°¾à°°à±†à°¡à±à°¡à°¿,0.0
+18,Assam,ASSAM,18.0,618,Kamrup Metro,KAMRUP MOHANAGAR,322.0
+32,Kerala,KERALA,32.0,557,Kannur,à´•à´£àµà´£àµ‚à´°àµâ€,589.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,157,Kanpur Nagar,KANPUR NAGAR,164.0
+3,Punjab,PUNJAB,3.0,35,Kapurthala,KAPURTHALA,36.0
+37,Ladakh,Ladakh,0.0,6,Kargil,KARGIL,4.0
+33,Tamil Nadu,TAMIL NADU,33.0,576,Karur,KARUR,613.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,7,Kathua,KATHUA,7.0
+8,Rajasthan,RAJASTHAN,8.0,770,Khairthal-Tijara,à¤–à¥ˆà¤°à¤¥à¤²-à¤¤à¤¿à¤œà¤¾à¤°à¤¾,
+23,Madhya Pradesh,MADHYA PRADESH,23.0,405,Khandwa (East Nimar),à¤–à¤£à¥à¤¡à¤µà¤¾ (à¤ªà¥‚à¤°à¥à¤µ à¤¨à¤¿à¤®à¤¾à¤¡à¤¼),466.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,542,Kolar,à²•à³‹à²²à²¾à²°,581.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,699,Kumuram Bheem Asifabad,à°•à±à°®à±à°°à°‚ à°­à±€à°®à± à°†à°¸à°¿à°«à°¾à°¬à°¾à°¦à±,0.0
+15,Mizoram,MIZORAM,15.0,264,Lawngtlai,LAWNGTLAI,287.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,336,Lohardaga,à¤²à¥‹à¤¹à¤°à¤¦à¤—à¤¾,356.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,235,Lower Dibang Valley,LOWER DIBANG VALLEY,258.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,719,Lower Siang,LOWER SIANG,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,165,Mahoba,MAHOBA,169.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,415,Mandla,à¤®à¤‚à¤¡à¤²à¤¾,454.0
+33,Tamil Nadu,TAMIL NADU,33.0,735,Mayiladuthurai,,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,513,Medak,à°®à±†à°¦à°•à±,535.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,170,Mirzapur,à¤®à¤¿à¤°à¥à¥›à¤¾à¤ªà¥à¤°,199.0
+13,Nagaland,NAGALAND,13.0,246,Mokokchung,MOKOKCHUNG,262.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,171,Moradabad,MORADABAD,135.0
+24,Gujarat,GUJARAT,24.0,673,Morbi,MORBI,0.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,482,Mumbai,à¤®à¥à¤‚à¤¬à¤ˆ,519.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,483,Mumbai Suburban,à¤®à¥à¤‚à¤¬à¤ˆ à¤‰à¤ªà¤¨à¤—à¤°,518.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,694,Nagarkurnool,à°¨à°¾à°—à°°à± à°•à°°à±à°¨à±‚à°²à±,0.0
+10,Bihar,BIHAR,10.0,209,Nalanda,à¤¨à¤¾à¤²à¤‚à¤¦à¤¾,229.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,514,Nalgonda,à°¨à°²à±à°—à±Šà°‚à°¡,539.0
+10,Bihar,BIHAR,10.0,210,Nawada,à¤¨à¤µà¤¾à¤¦à¤¾,237.0
+7,Delhi,DELHI,7.0,80,North,NORTH,91.0
+7,Delhi,DELHI,7.0,82,North West,NORTH WEST,90.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,237,Papum Pare,PAPUM PARE,248.0
+32,Kerala,KERALA,32.0,564,Pathanamthitta,à´ªà´¤àµà´¤à´¨à´‚à´¤à´¿à´Ÿàµà´Ÿ,599.0
+24,Gujarat,GUJARAT,24.0,456,Porbandar,PORBANDAR,478.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,120,Prayagraj,PRAYAGRAJ,175.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,175,Rae Bareli,RAE BARELI,158.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,546,Raichur,à²°à²¾à²¯à²šà³‚à²°à³,559.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,683,Rajanna Sircilla,à°°à°¾à°œà°¨à±à°¨ à°¸à°¿à°°à°¿à°¸à°¿à°²à±à°²,0.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,621,Ramban,RAMBAN,17.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,423,Ratlam,à¤°à¤¤à¤²à¤¾à¤®,434.0
+6,Haryana,HARYANA,6.0,72,Rewari,REWARI,85.0
+17,Meghalaya,MEGHALAYA,17.0,276,Ri Bhoi,RI BHOI,297.0
+6,Haryana,HARYANA,6.0,73,Rohtak,ROHTAK,82.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,624,Samba,SAMBA,22.0
+21,Odisha,ODISHA,21.0,371,Sambalpur,SAMBALPUR,372.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,493,Sangli,à¤¸à¤¾à¤‚à¤—à¤²à¥€,531.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,427,Sehore,à¤¸à¥€à¤¹à¥‹à¤°,445.0
+14,Manipur,MANIPUR,14.0,257,Senapati,SENAPATI,272.0
+8,Rajasthan,RAJASTHAN,8.0,780,Shahpura,à¤¶à¤¾à¤¹à¤ªà¥à¤°à¤¾,
+10,Bihar,BIHAR,10.0,219,Sheikhpura,à¤¶à¥‡à¤–à¤ªà¥à¤°à¤¾,228.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,679,Siang,,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,692,Siddipet,à°¸à°¿à°¦à±à°¦à°¿à°ªà±‡à°Ÿ,0.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,24,Sirmaur,SIRMAUR,32.0
+18,Assam,ASSAM,18.0,300,Sivasagar,SIVASAGAR,311.0
+18,Assam,ASSAM,18.0,301,Sonitpur,SONITPUR,306.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,271,South Tripura,à¦¦à¦•à§à¦·à¦¿à¦¨ à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,290.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,185,Sultanpur,SULTANPUR,179.0
+21,Odisha,ODISHA,21.0,373,Sundargarh,SUNDARGARH,374.0
+24,Gujarat,GUJARAT,24.0,459,Surat,SURAT,492.0
+24,Gujarat,GUJARAT,24.0,460,Surendranagar,SURENDRANAGAR,475.0
+33,Tamil Nadu,TAMIL NADU,33.0,594,Thoothukkudi,Thoothukkudi,627.0
+32,Kerala,KERALA,32.0,566,Thrissur,à´¤àµƒà´¶àµà´¶àµ‚à´°àµâ€,594.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,752,Tirupati,Tirupati,0.0
+13,Nagaland,NAGALAND,13.0,249,Tuensang,TUENSANG,267.0
+5,Uttarakhand,UTTARAKHAND,5.0,56,Udam Singh Nagar,UDAM SINGH NAGAR,67.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,14,Udhampur,UDHAMPUR,19.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,435,Ujjain,à¤‰à¤œà¥à¤œà¥ˆà¤¨,435.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,186,Unnao,UNNAO,156.0
+19,West Bengal,WEST BENGAL,19.0,311,Uttar Dinajpur,UTTAR DINAJPUR,330.0
+33,Tamil Nadu,TAMIL NADU,33.0,595,Vellore,VELLORE,605.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,693,Wanaparthy,à°µà°¨à°ªà°°à±à°¤à°¿,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,523,West Godavari,à°ªà°¶à±à°šà°¿à°®à°—à±‹à°¦à°¾à°µà°°à°¿,546.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,242,West Kameng,WEST KAMENG,246.0
+6,Haryana,HARYANA,6.0,76,Yamunanagar,YAMUNANAGAR,71.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,500,Yavatmal,à¤¯à¤µà¤¤à¤®à¤¾à¤³,510.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,466,Ahmednagar,à¤…à¤¹à¤®à¤¦à¤¨à¤—à¤°,522.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,745,Alluri Sitharama Raju,Alluri Sitharama Raju,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,154,Amroha,AMROHA,137.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,744,Anakapalli,Anakapalli,0.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,628,Anjaw,,260.0
+8,Rajasthan,RAJASTHAN,8.0,776,Anupgarh,à¤…à¤¨à¥‚à¤ªà¤—à¤¢à¤¼,
+9,Uttar Pradesh,UTTAR PRADESH,9.0,122,Auraiya,AURAIYA,162.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,140,Ayodhya,AYODHYA,177.0
+18,Assam,ASSAM,18.0,739,Bajali,,0.0
+21,Odisha,ODISHA,21.0,345,Balangir,BALANGIR,393.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,129,Bara Banki,BARA BANKI,176.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,690,Bhadradri Kothagudem,à°­à°¦à±à°°à°¾à°¦à±à°°à°¿ à°•à±Šà°¤à±à°¤à°—à±‚à°¡à±†à°‚,0.0
+8,Rajasthan,RAJASTHAN,8.0,91,Bharatpur,BHARATPUR,105.0
+10,Bihar,BIHAR,10.0,193,Bhojpur,à¤­à¥‹à¤œà¤ªà¥à¤°,231.0
+8,Rajasthan,RAJASTHAN,8.0,93,Bikaner,BIKANER,101.0
+19,West Bengal,WEST BENGAL,19.0,307,Birbhum,BIRBHUM,334.0
+6,Haryana,HARYANA,6.0,701,Charki Dadri,CHARKI DADRI,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,630,Chikkaballapura,à²šà²¿à²•à³à²•à²¬à²³à³à²³à²¾à²ªà³à²°,582.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,503,Chittoor,CHITTOOR,554.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,376,Dakshin Bastar Dantewada,à¤¦à¤•à¥à¤·à¤¿à¤£ à¤¬à¤¸à¥à¤¤à¤° à¤¦à¤‚à¤¤à¥‡à¤µà¤¾à¥œà¤¾,416.0
+18,Assam,ASSAM,18.0,283,Darrang,DARRANG,325.0
+5,Uttarakhand,UTTARAKHAND,5.0,49,Dehradun,DEHRADUN,60.0
+21,Odisha,ODISHA,21.0,351,Deogarh,DEOGARH,373.0
+18,Assam,ASSAM,18.0,284,Dhemaji,DHEMAJI,308.0
+18,Assam,ASSAM,18.0,285,Dhubri,DHUBURI,301.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,230,Dibang Valley,DIBANG VALLEY,257.0
+8,Rajasthan,RAJASTHAN,8.0,768,Didwana-Kuchaman,à¤¡à¥€à¤¡à¤µà¤¾à¤¨à¤¾-à¤•à¥à¤šà¤¾à¤®à¤¨,
+13,Nagaland,NAGALAND,13.0,244,Dimapur,DIMAPUR,265.0
+33,Tamil Nadu,TAMIL NADU,33.0,572,Dindigul,DINDIGUL,612.0
+38,The Dadra And Nagar Haveli And Daman And Diu,THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU,,464,Diu,DIU,494.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,4,Doda,DODA,16.0
+8,Rajasthan,RAJASTHAN,8.0,99,Dungarpur,DUNGARPUR,124.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,232,East Siang,EAST SIANG,251.0
+32,Kerala,KERALA,32.0,555,Ernakulam,à´Žà´±à´£à´¾à´•àµà´³à´‚,595.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,138,Etah,ETAH,201.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,141,Farrukhabad,FARRUKHABAD,159.0
+6,Haryana,HARYANA,6.0,61,Fatehabad,FATEHABAD,78.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,142,Fatehpur,FATEHPUR,172.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,537,Gadag,à²—à²¦à²—,561.0
+8,Rajasthan,RAJASTHAN,8.0,771,Gangapurcity,à¤—à¤‚à¤—à¤¾à¤ªà¥à¤°à¤¸à¤¿à¤Ÿà¥€,
+11,Sikkim,SIKKIM,11.0,225,Gangtok,Gangtok,244.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,145,Ghaziabad,GHAZIABAD,140.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,147,Gonda,GONDA,183.0
+10,Bihar,BIHAR,10.0,197,Gopalganj,à¤—à¥‹à¤ªà¤¾à¤²à¤—à¤‚à¤œ,217.0
+3,Punjab,PUNJAB,3.0,32,Gurdaspur,GURDASPUR,35.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,407,Gwalior,à¤—à¥à¤µà¤¾à¤²à¤¿à¤¯à¤°,421.0
+18,Assam,ASSAM,18.0,289,Hailakandi,HAILAKANDI,318.0
+8,Rajasthan,RAJASTHAN,8.0,101,Hanumangarh,HANUMANGARH,100.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,150,Hardoi,HARDOI,155.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,332,Hazaribagh,à¤¹à¥›à¤¾à¤°à¥€à¤¬à¤¾à¤—,360.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,477,Hingoli,à¤¹à¤¿à¤‚à¤—à¥‹à¤²à¥€,512.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,681,Jagitial,à°œà°—à°¿à°¤à±à°¯à°¾à°²,0.0
+21,Odisha,ODISHA,21.0,356,Jajapur,JAJAPUR,382.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,333,Jamtara,à¤œà¤¾à¤®à¤¤à¤¾à¥œà¤¾,363.0
+10,Bihar,BIHAR,10.0,198,Jamui,à¤œà¤®à¥à¤ˆ,238.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,379,Janjgir-Champa,à¤œà¤¾à¤‚à¤œà¤—à¥€à¤° - à¤šà¤¾à¤®à¥à¤ªà¤¾,405.0
+10,Bihar,BIHAR,10.0,199,Jehanabad,à¤œà¤¹à¤¾à¤¨à¤¾à¤¬à¤¾à¤¦,239.0
+19,West Bengal,WEST BENGAL,19.0,703,Jhargram,Jhargram,0.0
+10,Bihar,BIHAR,10.0,200,Kaimur (Bhabua),à¤•à¥ˆà¤®à¥‚à¤° ( à¤­à¤­à¥à¤† ),233.0
+33,Tamil Nadu,TAMIL NADU,33.0,574,Kancheepuram,KANCHIPURAM,604.0
+21,Odisha,ODISHA,21.0,359,Kandhamal,KANDHAMAL,390.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,18,Kangra,KANGRA,24.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,155,Kannauj,KANNAUJ,160.0
+6,Haryana,HARYANA,6.0,67,Karnal,KARNAL,74.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,633,Kasganj,Kasganj,202.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,413,Katni,à¤•à¤Ÿà¤¨à¥€,450.0
+10,Bihar,BIHAR,10.0,202,Khagaria,à¤–à¤—à¥œà¤¿à¤¯à¤¾,223.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,19,Kinnaur,KINNAUR,34.0
+13,Nagaland,NAGALAND,13.0,614,Kiphire,,269.0
+10,Bihar,BIHAR,10.0,203,Kishanganj,à¤•à¤¿à¤¶à¤¨à¤—à¤‚à¤œ,210.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,334,Koderma,à¤•à¥‹à¤¡à¤°à¤®à¤¾,348.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,543,Koppal,à²•à³Šà²ªà³à²ªà²³,560.0
+8,Rajasthan,RAJASTHAN,8.0,782,Kotputli-Behror,à¤•à¥‹à¤Ÿà¤ªà¥‚à¤¤à¤²à¥€-à¤¬à¤¹à¤°à¥‹à¤¡,
+32,Kerala,KERALA,32.0,560,Kottayam,à´•àµ‹à´Ÿàµà´Ÿà´¯à´‚,597.0
+32,Kerala,KERALA,32.0,561,Kozhikode,à´•àµ‹à´´à´¿à´•àµà´•àµ‹à´Ÿàµ,591.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,510,Krishna,KRISHNA,547.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,622,Kulgam,KULGAM,15.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,8,Kupwara,KUPWARA,1.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,511,Kurnool,KURNOOL,552.0
+10,Bihar,BIHAR,10.0,204,Lakhisarai,à¤²à¤–à¥€à¤¸à¤°à¤¾à¤¯,227.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,481,Latur,à¤²à¤¾à¤¤à¥‚à¤°,524.0
+15,Mizoram,MIZORAM,15.0,265,Lunglei,LUNGLEI,286.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,688,Mahabubabad,à°®à°¹à°¬à±à°¬à°¾à°¬à°¾à°¦à±,0.0
+24,Gujarat,GUJARAT,24.0,451,Mahesana,MAHESANA,471.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,164,Mahrajganj,MAHRAJGANJ,187.0
+15,Mizoram,MIZORAM,15.0,266,Mamit,MAMIT,281.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,22,Mandi,MANDI,27.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,760,Manendragarh-Chirmiri-Bharatpur(M C B),à¤®à¤¨à¥‡à¤¨à¥à¤¦à¥à¤°à¤—à¥-à¤šà¤¿à¤°à¤®à¤¿à¤°à¥€-à¤­à¤°à¤¤à¤ªà¥à¤°(à¤à¤®.à¤¸à¥€.à¤¬à¥€.),0.0
+21,Odisha,ODISHA,21.0,365,Mayurbhanj,MAYURBHANJ,376.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,700,Medchal Malkajgiri,à°®à±‡à°¡à±à°šà°²à± à°®à°²à±à°•à°¾à°œà°¿à°—à°¿à°°à°¿,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,417,Morena,à¤®à¥à¤°à¥ˆà¤¨à¤¾,419.0
+19,West Bengal,WEST BENGAL,19.0,319,Murshidabad,MURSHIDABAD,333.0
+21,Odisha,ODISHA,21.0,366,Nabarangpur,NABARANGPUR,397.0
+19,West Bengal,WEST BENGAL,19.0,320,Nadia,NADIA,336.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,485,Nanded,à¤¨à¤¾à¤‚à¤¦à¥‡à¤¡,511.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,486,Nandurbar,à¤¨à¤‚à¤¦à¥‚à¤°à¤¬à¤¾à¤°,497.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,721,Narayanpet,à°¨à°¾à°°à°¾à°¯à°£à± à°ªà±‡à°Ÿà±,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,418,Narsimhapur,à¤¨à¤°à¤¸à¤¿à¤‚à¤¹à¤ªà¥à¤°,452.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,419,Neemuch,à¤¨à¥€à¤®à¤š,432.0
+35,Andaman And Nicobar Islands,ANDAMAN AND NICOBAR ISLANDS,35.0,603,Nicobars,NICOBARS,638.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,680,Nirmal,à°¨à°¿à°°à±à°®à°²à±,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,722,Niwari,à¤¨à¤¿à¤µà¤¾à¤°à¥€,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,516,Nizamabad,à°¨à°¿à°œà°¾à°®à°¾à°¬à°¾à°¦à±,533.0
+13,Nagaland,NAGALAND,13.0,736,Noklak,Noklak,0.0
+30,Goa,GOA,30.0,551,North Goa,NORTH GOA,585.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,723,Pakke Kessang,PAKKE KESSANG,0.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,337,Pakur,à¤ªà¤¾à¤•à¥à¤°,353.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,785,Pandhurna,à¤ªà¤¾à¤‚à¤¢à¥à¤°à¥à¤£à¤¾,
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,489,Parbhani,à¤ªà¤°à¤­à¤£à¥€,513.0
+19,West Bengal,WEST BENGAL,19.0,704,Paschim Bardhaman,PASCHIM BARDHAMAN,0.0
+19,West Bengal,WEST BENGAL,19.0,318,Paschim Medinipur,PASCHIM MEDINIPUR,344.0
+3,Punjab,PUNJAB,3.0,41,Patiala,PATIALA,48.0
+10,Bihar,BIHAR,10.0,212,Patna,à¤ªà¤Ÿà¤¨à¤¾,230.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,682,Peddapalli,à°ªà±†à°¦à±à°¦à°ªà°²à±à°²à°¿,0.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,10,Poonch,POONCH,5.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,174,Pratapgarh,PRATAPGARH,173.0
+34,Puducherry,PUDUCHERRY,34.0,600,Puducherry,à®ªà¯à®¤à¯à®šà¯à®šà¯‡à®°à®¿,635.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,11,Pulwama,PULWAMA,12.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,490,Pune,à¤ªà¥à¤£à¥‡,521.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,491,Raigad,à¤°à¤¾à¤¯à¤—à¤¡,520.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,386,Raigarh,à¤°à¤¾à¤¯à¤—à¥,403.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,387,Raipur,à¤°à¤¾à¤¯à¤ªà¥à¤°,410.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,422,Rajgarh,à¤°à¤¾à¤œà¤—à¤¢à¤¼,442.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,12,Rajouri,RAJOURI,6.0
+5,Uttarakhand,UTTARAKHAND,5.0,54,Rudra Prayag,RUDRA PRAYAG,58.0
+24,Gujarat,GUJARAT,24.0,458,Sabar Kantha,SABAR KANTHA,472.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,177,Saharanpur,SAHARANPUR,132.0
+15,Mizoram,MIZORAM,15.0,727,Saitual,SAITUAL,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,584,Salem,SALEM,608.0
+8,Rajasthan,RAJASTHAN,8.0,777,Salumbar,à¤¸à¤²à¥‚à¤®à¥â€à¤¬à¤°,
+9,Uttar Pradesh,UTTAR PRADESH,9.0,659,Sambhal,SAMBHAL,0.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,691,Sangareddy,à°¸à°‚à°—à°¾à°°à±†à°¡à±à°¡à°¿,0.0
+10,Bihar,BIHAR,10.0,218,Saran,à¤¸à¤¾à¤°à¤£,219.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,763,Sarangarh-Bilaigarh,à¤¸à¤¾à¤°à¤‚à¤—à¥-à¤¬à¤¿à¤²à¤¾à¤ˆà¤—à¥,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,426,Satna,à¤¸à¤¤à¤¨à¤¾,429.0
+7,Delhi,DELHI,7.0,671,Shahdara,SHAHDARA,0.0
+13,Nagaland,NAGALAND,13.0,765,Shamator,Shamator,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,660,Shamli,SHAMLI,0.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,23,Shimla,SHIMLA,33.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,547,Shivamogga,à²¶à²¿à²µà²®à³Šà²—à³à²—,568.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,725,Shi Yomi,SHI YOMI,0.0
+15,Mizoram,MIZORAM,15.0,267,Siaha,Siaha,288.0
+10,Bihar,BIHAR,10.0,221,Sitamarhi,à¤¸à¥€à¤¤à¤¾à¤®à¤¢à¥€,206.0
+6,Haryana,HARYANA,6.0,75,Sonipat,SONIPAT,76.0
+35,Andaman And Nicobar Islands,ANDAMAN AND NICOBAR ISLANDS,35.0,602,South Andamans,SOUTH ANDAMANS,640.0
+17,Meghalaya,MEGHALAYA,17.0,277,South Garo Hills,SOUTH GARO HILLS,295.0
+17,Meghalaya,MEGHALAYA,17.0,658,South West Khasi Hills,SOUTH WEST KHASI HILLS,0.0
+3,Punjab,PUNJAB,3.0,39,Sri Muktsar Sahib,à¨¸à©à¨°à©€ à¨®à©à¨•à¨¤à¨¸à¨° à¨¸à¨¾à¨¹à¨¿à¨¬,44.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,13,Srinagar,SRINAGAR,10.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,515,Sri Potti Sriramulu Nellore,à°¶à±à°°à±€ à°ªà±Šà°Ÿà±à°Ÿà°¿ à°¶à±à°°à±€à°°à°¾à°®à±à°²à± à°¨à±†à°²à±à°²à±‚à°°à±,550.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,754,Sri Sathya Sai,Sri Sathya Sai,0.0
+24,Gujarat,GUJARAT,24.0,641,Tapi,,493.0
+33,Tamil Nadu,TAMIL NADU,33.0,589,Thiruvallur,THIRUVALLUR,602.0
+14,Manipur,MANIPUR,14.0,259,Thoubal,THOUBAL,276.0
+33,Tamil Nadu,TAMIL NADU,33.0,592,Tirunelveli,TIRUNELVELI,628.0
+13,Nagaland,NAGALAND,13.0,757,Tseminyu,Tseminyu,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,548,Tumakuru,à²¤à³à²®à²•à³‚à²°à³,571.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,436,Umaria,à¤‰à¤®à¤°à¤¿à¤¯à¤¾,431.0
+24,Gujarat,GUJARAT,24.0,461,Vadodara,VADODARA,486.0
+10,Bihar,BIHAR,10.0,224,Vaishali,à¤µà¥ˆà¤¶à¤¾à¤²à¥€,220.0
+24,Gujarat,GUJARAT,24.0,462,Valsad,VALSAD,491.0
+33,Tamil Nadu,TAMIL NADU,33.0,596,Viluppuram,VILLUPURAM,607.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,520,Visakhapatnam,à°µà°¿à°¶à°¾à°–à°ªà°Ÿà±à°¨à°‚,544.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,521,Vizianagaram,VIZIANAGARAM,543.0
+7,Delhi,DELHI,7.0,85,West,WEST,96.0
+24,Gujarat,GUJARAT,24.0,440,Anand,ANAND,482.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,502,Ananthapuramu,à°…à°¨à°‚à°¤à°ªà±à°°à°®à±,553.0
+21,Odisha,ODISHA,21.0,344,Anugul,ANUGUL,384.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,390,Anuppur,à¤…à¤¨à¥‚à¤ªà¤ªà¥à¤°,461.0
+10,Bihar,BIHAR,10.0,188,Araria,à¤…à¤°à¤°à¤¿à¤¯à¤¾,209.0
+33,Tamil Nadu,TAMIL NADU,33.0,610,Ariyalur,à®…à®°à®¿à®¯à®²à¯‚à®°à¯,616.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,391,Ashoknagar,à¤…à¤¶à¥‹à¤•à¤¨à¤—à¤°,459.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,124,Baghpat,BAGHPAT,139.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,392,Balaghat,à¤¬à¤¾à¤²à¤¾à¤˜à¤¾à¤Ÿ,457.0
+8,Rajasthan,RAJASTHAN,8.0,775,Balotra,à¤¬à¤¾à¤²à¥‹à¤¤à¤°à¤¾,
+24,Gujarat,GUJARAT,24.0,441,Banas Kantha,BANAS KANTHA,469.0
+8,Rajasthan,RAJASTHAN,8.0,88,Banswara,BANSWARA,125.0
+8,Rajasthan,RAJASTHAN,8.0,89,Baran,BARAN,128.0
+21,Odisha,ODISHA,21.0,347,Bargarh,BARGARH,370.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,131,Basti,BASTI,185.0
+8,Rajasthan,RAJASTHAN,8.0,774,Beawar,à¤¬à¥â€à¤¯à¤¾à¤µà¤°,
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,526,Bengaluru Rural,à²¬à³†à²‚à²—à²³à³‚à²°à³ à²—à³à²°à²¾à²®à²¾à²‚à²¤à²°,583.0
+24,Gujarat,GUJARAT,24.0,442,Bharuch,BHARUCH,488.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,396,Bhopal,à¤­à¥‹à¤ªà¤¾à¤²,444.0
+21,Odisha,ODISHA,21.0,349,Boudh,BOUDH,391.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,472,Buldhana,à¤¬à¥à¤²à¤¢à¤¾à¤£à¤¾,500.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,397,Burhanpur,à¤¬à¥à¤°à¤¹à¤¾à¤¨à¤ªà¥à¤°,467.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,229,Changlang,CHANGLANG,253.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,323,Chatra,à¤šà¤¤à¤°à¤¾,347.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,532,Chikkamagaluru,à²šà²¿à²•à³à²•à²®à²—à²³à³‚à²°à³,570.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,533,Chitradurga,à²šà²¿à²¤à³à²°à²¦à³à²°à³à²—,566.0
+8,Rajasthan,RAJASTHAN,8.0,95,Chittorgarh,CHITTORGARH,126.0
+13,Nagaland,NAGALAND,13.0,758,Chumoukedima,Chumoukedima,0.0
+8,Rajasthan,RAJASTHAN,8.0,96,Churu,CHURU,102.0
+19,West Bengal,WEST BENGAL,19.0,308,Cooch Behar,COOCH BEHAR,329.0
+38,The Dadra And Nagar Haveli And Daman And Diu,THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU,,465,Dadra And Nagar Haveli,DADRA AND NAGAR HAVELI,496.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,324,Deoghar,à¤¦à¥‡à¤µà¤˜à¤°,350.0
+24,Gujarat,GUJARAT,24.0,674,Devbhumi Dwarka,DEVBHUMI DWARKA,0.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,377,Dhamtari,à¤§à¤®à¤¤à¤°à¥€,412.0
+18,Assam,ASSAM,18.0,299,Dima Hasao,DIMA HASAO,315.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,326,Dumka,à¤¦à¥à¤®à¤•à¤¾,362.0
+7,Delhi,DELHI,7.0,78,East,EAST,93.0
+17,Meghalaya,MEGHALAYA,17.0,740,Eastern West Khasi Hills,,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,505,East Godavari,EAST GODAVARI,545.0
+17,Meghalaya,MEGHALAYA,17.0,274,East Khasi Hills,EAST KHASI HILLS,298.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,327,East Singhbum,à¤ªà¥‚à¤°à¥à¤µà¥€ à¤¸à¤¿à¤‚à¤˜à¤­à¥‚à¤®,357.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,475,Gadchiroli,à¤—à¤¡à¤šà¤¿à¤°à¥‹à¤²à¥€,508.0
+21,Odisha,ODISHA,21.0,353,Gajapati,GAJAPATI,389.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,626,Ganderbal,GANDERBAL,11.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,734,Gaurela-Pendra-Marwahi,à¤—à¥Œà¤°à¥‡à¤²à¤¾-à¤ªà¥‡à¤‚à¤¡à¥à¤°à¤¾-à¤®à¤°à¤µà¤¾à¤¹à¥€,0.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,329,Giridih,à¤—à¤¿à¤°à¤¿à¤¡à¥€à¤¹,349.0
+24,Gujarat,GUJARAT,24.0,675,Gir Somnath,GIR SOMNATH,0.0
+18,Assam,ASSAM,18.0,287,Goalpara,GOALPARA,302.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,476,Gondia,à¤—à¥‹à¤‚à¤¦à¥€à¤¯à¤¾,507.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,506,Guntur,GUNTUR,548.0
+18,Assam,ASSAM,18.0,709,Hojai,,0.0
+19,West Bengal,WEST BENGAL,19.0,312,Hooghly,HOOGHLY,338.0
+3,Punjab,PUNJAB,3.0,33,Hoshiarpur,HOSHIARPUR,38.0
+19,West Bengal,WEST BENGAL,19.0,313,Howrah,HOWRAH,341.0
+14,Manipur,MANIPUR,14.0,256,Imphal West,IMPHAL WEST,277.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,411,Jabalpur,à¤œà¤¬à¤²à¤ªà¥à¤°,451.0
+3,Punjab,PUNJAB,3.0,34,Jalandhar,JALANDHAR,37.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,478,Jalgaon,à¤œà¤³à¤—à¤¾à¤µ,499.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,5,Jammu,JAMMU,21.0
+8,Rajasthan,RAJASTHAN,8.0,106,Jhunjhunu,JHUNJHUNU,103.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,695,Jogulamba Gadwal,à°œà±‹à°—à±à°²à°¾à°‚à°¬ à°—à°¦à±à°µà°¾à°²,0.0
+14,Manipur,MANIPUR,14.0,711,Kakching,,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,538,Kalaburagi,à²•à²²à²¬à³à²°à²—à²¿,579.0
+14,Manipur,MANIPUR,14.0,717,Kamjong,,0.0
+18,Assam,ASSAM,18.0,291,Kamrup,KAMRUP,321.0
+14,Manipur,MANIPUR,14.0,712,Kangpokpi,,0.0
+18,Assam,ASSAM,18.0,292,Karbi Anglong,KARBI ANGLONG,314.0
+32,Kerala,KERALA,32.0,558,Kasaragod,à´•à´¾à´¸à´°àµâ€à´•àµ‹à´¡àµ,588.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,509,Khammam,à°–à°®à±à°®à°‚,541.0
+15,Mizoram,MIZORAM,15.0,728,Khawzawl,KHAWZAWL,0.0
+21,Odisha,ODISHA,21.0,362,Khordha,KHORDHA,386.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,541,Kodagu,à²•à³Šà²¡à²—à³,576.0
+21,Odisha,ODISHA,21.0,363,Koraput,KORAPUT,398.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,383,Korba,à¤•à¥‹à¤°à¤¬à¤¾,404.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,384,Korea,à¤•à¥‹à¤°à¤¿à¤¯à¤¾,400.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,677,Kra Daadi,KRA DAADI,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,577,Krishnagiri,KRISHNAGIRI,631.0
+6,Haryana,HARYANA,6.0,68,Kurukshetra,KURUKSHETRA,72.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,21,Lahaul And Spiti,Lahaul and Spiti,25.0
+18,Assam,ASSAM,18.0,295,Lakhimpur,LAKHIMPUR,307.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,724,Leparada,LEPARADA,0.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,666,Longding,LONGDING,0.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,236,Lower Subansiri,LOWER SUBANSIRI,255.0
+3,Punjab,PUNJAB,3.0,36,Ludhiana,à¨²à©‚à¨¿à¨§à¨†à¨£à¨¾,41.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,512,Mahabubnagar,à°®à°¹à°¬à±‚à°¬à± à°¨à°—à°°à±,538.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,385,Mahasamund,à¤®à¤¹à¤¾à¤¸à¤®à¥à¤‚à¤¦,411.0
+34,Puducherry,PUDUCHERRY,34.0,599,Mahe,MAHE,636.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,416,Mandsaur,à¤®à¤¨à¥à¤¦à¤¸à¥Œà¤°,433.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,544,Mandya,à²®à²‚à²¡à³à²¯,573.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,766,MAUGANJ,à¤®à¤Šà¤—à¤‚à¤œ,
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,761,Mohla-Manpur-Ambagarh Chouki,à¤®à¥‹à¤¹à¤²à¤¾-à¤®à¤¾à¤¨à¤ªà¥à¤°-à¤…à¤®à¥à¤¬à¤¾à¤—à¥ à¤šà¥Œà¤•à¥€,0.0
+18,Assam,ASSAM,18.0,297,Nagaon,NAGAON,305.0
+18,Assam,ASSAM,18.0,298,Nalbari,NALBARI,323.0
+33,Tamil Nadu,TAMIL NADU,33.0,580,Namakkal,NAMAKKAL,609.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,678,Namsai,,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,755,Nandyal,Nandyal,0.0
+8,Rajasthan,RAJASTHAN,8.0,773,Neem Ka Thana,à¤¨à¥€à¤® à¤•à¤¾ à¤¥à¤¾à¤¨à¤¾,
+7,Delhi,DELHI,7.0,79,New Delhi,NEW DELHI,94.0
+21,Odisha,ODISHA,21.0,368,Nuapada,NUAPADA,394.0
+24,Gujarat,GUJARAT,24.0,454,Panch Mahals,PANCH MAHALS,484.0
+10,Bihar,BIHAR,10.0,211,Pashchim Champaran,à¤ªà¤¶à¥à¤šà¤¿à¤® à¤šà¤®à¥à¤ªà¤¾à¤°à¤£,203.0
+24,Gujarat,GUJARAT,24.0,455,Patan,PATAN,470.0
+33,Tamil Nadu,TAMIL NADU,33.0,581,Perambalur,PERAMBALUR,615.0
+13,Nagaland,NAGALAND,13.0,613,Peren,,271.0
+13,Nagaland,NAGALAND,13.0,248,Phek,PHEK,266.0
+14,Manipur,MANIPUR,14.0,715,Pherzawl,,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,517,Prakasam,PRAKASAM,549.0
+8,Rajasthan,RAJASTHAN,8.0,629,Pratapgarh,PRATAPGARH,131.0
+33,Tamil Nadu,TAMIL NADU,33.0,582,Pudukkottai,PUDUKKOTTAI,621.0
+19,West Bengal,WEST BENGAL,19.0,317,Purba Medinipur,PURBA MEDINIPUR,345.0
+10,Bihar,BIHAR,10.0,214,Purnia,à¤ªà¥‚à¤°à¥à¤£à¤¿à¤¯à¤¾,211.0
+19,West Bengal,WEST BENGAL,19.0,321,Purulia,PURULIA,340.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,388,Rajnandgaon,à¤°à¤¾à¤œà¤¨à¤‚à¤¦à¤—à¤¾à¤‚à¤µ,408.0
+8,Rajasthan,RAJASTHAN,8.0,112,Rajsamand,RAJSAMAND,123.0
+33,Tamil Nadu,TAMIL NADU,33.0,583,Ramanathapuram,RAMANATHAPURAM,626.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,339,Ranchi,à¤°à¤¾à¤‚à¤šà¥€,364.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,492,Ratnagiri,à¤°à¤¤à¥à¤¨à¤¾à¤—à¤¿à¤°à¥€,528.0
+21,Odisha,ODISHA,21.0,370,Rayagada,RAYAGADA,396.0
+10,Bihar,BIHAR,10.0,216,Saharsa,à¤¸à¤¹à¤°à¤¸à¤¾,214.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,340,Sahebganj,à¤¸à¤¾à¤¹à¥‡à¤¬à¤—à¤‚à¤œ,352.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,762,Sakti,à¤¸à¤•à¥à¤¤à¥€,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,178,Sant Kabir Nagar,SANT KABIR NAGAR,186.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,341,Saraikela Kharsawan,à¤¸à¤°à¤¾à¤¯à¤•à¥‡à¤²à¤¾ à¤–à¤°à¤¸à¤¾à¤µà¤¾à¤‚,369.0
+8,Rajasthan,RAJASTHAN,8.0,113,Sawai Madhopur,SAWAI MADHOPUR,108.0
+16,Tripura,à¦¤à§à¦°à¦¿à¦ªà§à¦°à¦¾,16.0,653,Sepahijala,à¦¸à¦¿à¦ªà¦¾à¦¹à¦¿à¦œà¦²à¦¾,0.0
+15,Mizoram,MIZORAM,15.0,268,Serchhip,SERCHHIP,285.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,429,Shahdol,à¤¶à¤¹à¤¡à¥‹à¤²,460.0
+10,Bihar,BIHAR,10.0,220,Sheohar,à¤¶à¤¿à¤µà¤¹à¤°,205.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,181,Shrawasti,SHRAWASTI,181.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,342,Simdega,à¤¸à¤¿à¤®à¤¡à¥‡à¤—à¤¾,367.0
+10,Bihar,BIHAR,10.0,222,Siwan,à¤¸à¤¿à¤µà¤¾à¤¨,218.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,25,Solan,SOLAN,31.0
+7,Delhi,DELHI,7.0,670,South East,SOUTH EAST,0.0
+7,Delhi,DELHI,7.0,84,South West,SOUTH WEST,97.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,648,Surajpur,à¤¸à¥‚à¤°à¤œà¤ªà¥à¤°,0.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,389,Surguja,à¤¸à¤°à¤—à¥à¤œà¤¾,401.0
+14,Manipur,MANIPUR,14.0,258,Tamenglong,TAMENGLONG,273.0
+3,Punjab,PUNJAB,3.0,609,Tarn Taran,tarn taran,50.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,238,Tawang,TAWANG,245.0
+33,Tamil Nadu,TAMIL NADU,33.0,733,Tenkasi,à®¤à¯†à®©à¯à®•à®¾à®šà®¿,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,586,Thanjavur,THANJAVUR,620.0
+33,Tamil Nadu,TAMIL NADU,33.0,587,The Nilgiris,THE NILGIRIS,611.0
+18,Assam,ASSAM,18.0,302,Tinsukia,TINSUKIA,309.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,239,Tirap,TIRAP,254.0
+33,Tamil Nadu,TAMIL NADU,33.0,732,Tirupathur,à®¤à®¿à®°à¯à®ªà¯à®ªà®¤à¯à®¤à¯‚à®°à¯,0.0
+8,Rajasthan,RAJASTHAN,8.0,116,Tonk,TONK,120.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,549,Udupi,à²‰à²¡à³à²ªà²¿,569.0
+14,Manipur,MANIPUR,14.0,260,Ukhrul,UKHRUL,279.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,26,Una,UNA,29.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,381,Uttar Bastar Kanker,à¤‰à¤¤à¥à¤¤à¤° à¤¬à¤¸à¥à¤¤à¤° à¤•à¤¾à¤‚à¤•à¥‡à¤°,413.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,437,Vidisha,à¤µà¤¿à¤¦à¤¿à¤¶à¤¾,443.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,738,Vijayanagar,,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,530,Vijayapura,à²µà²¿à²œà²¯à²¾à²ªà³à²°,557.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,698,Vikarabad,à°µà°¿à°•à°¾à°°à°¾à°¬à°¾à°¦à±,0.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,499,Washim,à¤µà¤¾à¤¶à¤¿à¤®,502.0
+18,Assam,ASSAM,18.0,710,West Karbi Anglong,,0.0
+13,Nagaland,NAGALAND,13.0,250,Wokha,WOKHA,264.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,501,Adilabad,à°†à°¦à°¿à°²à°¾à°¬à°¾à°¦à±,532.0
+24,Gujarat,GUJARAT,24.0,438,Ahmedabad,AHMEDABAD,474.0
+15,Mizoram,MIZORAM,15.0,261,Aizawl,AIZAWL,283.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,467,Akola,à¤…à¤•à¥‹à¤²à¤¾,501.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,119,Aligarh,ALIGARH,143.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,639,Alirajpur,à¤…à¤²à¥€à¤°à¤¾à¤œà¤ªà¥à¤°,465.0
+8,Rajasthan,RAJASTHAN,8.0,87,Alwar,ALWAR,104.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,640,Amethi,Amethi,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,123,Azamgarh,AZAMGARH,191.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,524,Bagalkote,à²¬à²¾à²—à²²à²•à³‹à²Ÿà³†,556.0
+5,Uttarakhand,UTTARAKHAND,5.0,46,Bageshwar,BAGESHWAR,63.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,528,Ballari,à²¬à²³à³à²³à²¾à²°à²¿,565.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,750,Bapatla,Bapatla,0.0
+8,Rajasthan,RAJASTHAN,8.0,90,Barmer,BARMER,115.0
+3,Punjab,PUNJAB,3.0,605,Barnala,,54.0
+18,Assam,ASSAM,18.0,280,Barpeta,BARPETA,303.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,374,Bastar,à¤¬à¤¸à¥à¤¤à¤°,414.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,394,Betul,à¤¬à¥ˆà¤¤à¥‚à¤²,447.0
+21,Odisha,ODISHA,21.0,348,Bhadrak,BHADRAK,378.0
+24,Gujarat,GUJARAT,24.0,443,Bhavnagar,BHAVNAGAR,481.0
+8,Rajasthan,RAJASTHAN,8.0,92,Bhilwara,BHILWARA,122.0
+6,Haryana,HARYANA,6.0,59,Bhiwani,BHIWANI,81.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,529,Bidar,à²¬à³€à²¦à²°à³â€Œ,558.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,132,Bijnor,BIJNOR,134.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,15,Bilaspur,BILASPUR,30.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,322,Bokaro,à¤¬à¥‹à¤•à¤¾à¤°à¥‹,355.0
+18,Assam,ASSAM,18.0,281,Bongaigaon,BONGAIGAON,319.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,2,Budgam,,2.0
+10,Bihar,BIHAR,10.0,194,Buxar,à¤¬à¤•à¥à¤¸à¤°,232.0
+7,Delhi,DELHI,7.0,77,Central,CENTRAL,95.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,16,Chamba,CHAMBA,23.0
+15,Mizoram,MIZORAM,15.0,262,Champhai,CHAMPHAI,284.0
+4,Chandigarh,CHANDIGARH,4.0,44,Chandigarh,CHANDIGARH,55.0
+33,Tamil Nadu,TAMIL NADU,33.0,730,Chengalpattu,à®šà¯†à®™à¯à®•à®²à¯à®ªà®Ÿà¯à®Ÿà¯,0.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,469,Chhatrapati Sambhajinagar,à¤›à¤¤à¥à¤°à¤ªà¤¤à¥€ à¤¸à¤‚à¤­à¤¾à¤œà¥€à¤¨à¤—à¤°,515.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,399,Chhindwara,à¤›à¤¿à¤¨à¥à¤¦à¤µà¤¾à¤¡à¤¼à¤¾,455.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,136,Chitrakoot,CHITRAKOOT,171.0
+14,Manipur,MANIPUR,14.0,254,Churachandpur,CHURACHANDPUR,274.0
+33,Tamil Nadu,TAMIL NADU,33.0,570,Cuddalore,CUDDALORE,617.0
+21,Odisha,ODISHA,21.0,350,Cuttack,CUTTACK,381.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,534,Dakshina Kannada,à²¦à²•à³à²·à²¿à²£ à²•à²¨à³à²¨à²¡,575.0
+38,The Dadra And Nagar Haveli And Daman And Diu,THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU,,463,Daman,DAMAN,495.0
+10,Bihar,BIHAR,10.0,195,Darbhanga,à¤¦à¤°à¤­à¤‚à¤—à¤¾,215.0
+8,Rajasthan,RAJASTHAN,8.0,97,Dausa,DAUSA,109.0
+8,Rajasthan,RAJASTHAN,8.0,767,Deeg,à¤¡à¥€à¤—,
+9,Uttar Pradesh,UTTAR PRADESH,9.0,137,Deoria,DEORIA,190.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,402,Dewas,à¤¦à¥‡à¤µà¤¾à¤¸,437.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,403,Dhar,à¤§à¤¾à¤°,438.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,488,Dharashiv,à¤§à¤¾à¤°à¤¾à¤¶à¤¿à¤µ,525.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,474,Dhule,à¤§à¥à¤³à¥‡,498.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,747,Dr. B.R. Ambedkar Konaseema,à°¡à°¾ à°¬à°¿ à°†à°°à±  à°…à°‚à°¬à±‡à°¡à±à°•à°°à± à°•à±‹à°¨à°¸à±€à°®,0.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,231,East Kameng,EAST KAMENG,247.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,139,Etawah,ETAWAH,161.0
+6,Haryana,HARYANA,6.0,60,Faridabad,FARIDABAD,88.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,143,Firozabad,FIROZABAD,147.0
+8,Rajasthan,RAJASTHAN,8.0,100,Ganganagar,GANGANAGAR,99.0
+18,Assam,ASSAM,18.0,288,Golaghat,GOLAGHAT,313.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,148,Gorakhpur,GORAKHPUR,188.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,406,Guna,à¤—à¥à¤¨à¤¾,458.0
+11,Sikkim,SIKKIM,11.0,228,Gyalshing,Gyalshing,242.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,149,Hamirpur,HAMIRPUR,168.0
+32,Kerala,KERALA,32.0,556,Idukki,à´‡à´Ÿàµà´•àµà´•à´¿,596.0
+14,Manipur,MANIPUR,14.0,255,Imphal East,IMPHAL EAST,278.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,410,Indore,à¤‡à¤¨à¥à¤¦à¥Œà¤°,439.0
+8,Rajasthan,RAJASTHAN,8.0,783,Jaipur (Gramin),à¤œà¤¯à¤ªà¥à¤° (à¤—à¥à¤°à¤¾à¤®à¥€à¤£),
+8,Rajasthan,RAJASTHAN,8.0,103,Jaisalmer,JAISALMER,114.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,689,Jangoan,à°œà°¨à°—à°¾à°‚,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,152,Jaunpur,JAUNPUR,194.0
+6,Haryana,HARYANA,6.0,64,Jhajjar,JHAJJAR,83.0
+24,Gujarat,GUJARAT,24.0,448,Junagadh,JUNAGADH,479.0
+6,Haryana,HARYANA,6.0,66,Kaithal,KAITHAL,73.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,718,Kamle,KAMLE,0.0
+33,Tamil Nadu,TAMIL NADU,33.0,575,Kanniyakumari,KANNIYAKUMARI,629.0
+34,Puducherry,PUDUCHERRY,34.0,598,Karaikal,à®•à®¾à®°à¯ˆà®•à¯à®•à®¾à®²à¯,637.0
+18,Assam,ASSAM,18.0,293,Karimganj,KARIMGANJ,317.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,158,Kaushambi,KAUSHAMBI,174.0
+8,Rajasthan,RAJASTHAN,8.0,781,Kekri,à¤•à¥‡à¤•à¤¡à¤¼à¥€,
+21,Odisha,ODISHA,21.0,361,Kendujhar,KENDUJHAR,375.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,759,Khairagarh-Chhuikhadan-Gandai,à¤–à¥ˆà¤°à¤¾à¤—à¥-à¤›à¥à¤ˆà¤–à¤¦à¤¾à¤¨-à¤—à¤‚à¤¡à¤ˆ,0.0
+13,Nagaland,NAGALAND,13.0,245,Kohima,KOHIMA,270.0
+18,Assam,ASSAM,18.0,294,Kokrajhar,KOKRAJHAR,300.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,480,Kolhapur,à¤•à¥‹à¤²à¥à¤¹à¤¾à¤ªà¥‚à¤°,530.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,643,Kondagaon,à¤•à¥‹à¤‚à¤¡à¤¾à¤—à¤¾à¤‚à¤µ,0.0
+2,Himachal Pradesh,HIMACHAL PRADESH,2.0,20,Kullu,KULLU,26.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,233,Kurung Kumey,KURUNG KUMEY,256.0
+37,Ladakh,Ladakh,0.0,9,Leh Ladakh,LEH LADAKH,3.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,162,Lucknow,LUCKNOW,157.0
+10,Bihar,BIHAR,10.0,205,Madhepura,à¤®à¤§à¥‡à¤ªà¥à¤°à¤¾,213.0
+3,Punjab,PUNJAB,3.0,737,Malerkotla,,0.0
+11,Sikkim,SIKKIM,11.0,226,Mangan,Mangan,241.0
+3,Punjab,PUNJAB,3.0,37,Mansa,à¨®à¨¾à¨¨à¨¸à¨¾,47.0
+18,Assam,ASSAM,18.0,296,Marigaon,MARIGAON,304.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,167,Mathura,MATHURA,145.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,169,Meerut,MEERUT,138.0
+3,Punjab,PUNJAB,3.0,38,Moga,MOGA,42.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,647,Mungeli,à¤®à¥à¤‚à¤—à¥‡à¤²à¥€,0.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,172,Muzaffarnagar,MUZAFFARNAGAR,133.0
+10,Bihar,BIHAR,10.0,208,Muzaffarpur,à¤®à¥à¤œà¤«à¥à¤«à¤°à¤ªà¥à¤°,216.0
+8,Rajasthan,RAJASTHAN,8.0,110,Nagaur,NAGAUR,112.0
+11,Sikkim,SIKKIM,11.0,227,Namchi,Namchi,243.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,637,Narayanpur,à¤¨à¤¾à¤°à¤¾à¤¯à¤£à¤ªà¥à¤°,415.0
+24,Gujarat,GUJARAT,24.0,452,Narmada,NARMADA,487.0
+21,Odisha,ODISHA,21.0,367,Nayagarh,NAYAGARH,385.0
+13,Nagaland,NAGALAND,13.0,764,Niuland,Niuland,0.0
+19,West Bengal,WEST BENGAL,19.0,303,North 24 Parganas,NORTH TWENTY FOUR PARGANAS,337.0
+35,Andaman And Nicobar Islands,ANDAMAN AND NICOBAR ISLANDS,35.0,632,North And Middle Andaman,NORTH AND MIDDLE ANDAMAN,639.0
+17,Meghalaya,MEGHALAYA,17.0,656,North Garo Hills,NORTH GARO HILLS,0.0
+6,Haryana,HARYANA,6.0,604,Nuh,à¤¨à¥‚à¤à¤¹,87.0
+11,Sikkim,SIKKIM,11.0,741,Pakyong,Pakyong,0.0
+8,Rajasthan,RAJASTHAN,8.0,111,Pali,PALI,118.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,751,Palnadu,Palnadu,0.0
+6,Haryana,HARYANA,6.0,619,Palwal,,89.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,420,Panna,à¤ªà¤¨à¥à¤¨à¤¾,426.0
+5,Uttarakhand,UTTARAKHAND,5.0,52,Pauri Garhwal,PAURI GARHWAL,61.0
+8,Rajasthan,RAJASTHAN,8.0,772,Phalodi,à¤«à¤²à¤¾à¥ˆà¤¦à¥€,
+9,Uttar Pradesh,UTTAR PRADESH,9.0,173,Pilibhit,PILIBHIT,151.0
+19,West Bengal,WEST BENGAL,19.0,306,Purba Bardhaman,PURBA BARDHAMAN,335.0
+24,Gujarat,GUJARAT,24.0,457,Rajkot,RAJKOT,476.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,631,Ramanagara,à²°à²¾à²®à²¨à²—à²°,584.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,607,Ramgarh,à¤°à¤¾à¤®à¤—à¥,361.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,176,Rampur,RAMPUR,136.0
+33,Tamil Nadu,TAMIL NADU,33.0,731,Ranipet,à®°à®¾à®£à®¿à®ªà¯à®ªà¯‡à®Ÿà¯à®Ÿà¯ˆ,0.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,424,Rewa,à¤°à¥€à¤µà¤¾,430.0
+10,Bihar,BIHAR,10.0,215,Rohtas,à¤°à¥‹à¤¹à¤¤à¤¾à¤¸,234.0
+3,Punjab,PUNJAB,3.0,42,Rupnagar,à¨°à©‚à¨ªà¨¨à¨—à¨°,51.0
+8,Rajasthan,RAJASTHAN,8.0,779,Sanchore,à¤¸à¤¾à¤‚à¤šà¥Œà¤°,
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,494,Satara,à¤¸à¤¾à¤¤à¤¾à¤°à¤¾,527.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,428,Seoni,à¤¸à¤¿à¤µà¤¨à¥€,456.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,180,Shahjahanpur,SHAHJAHANPUR,152.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,430,Shajapur,à¤¶à¤¾à¤œà¤¾à¤ªà¥à¤°,436.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,431,Sheopur,à¤¶à¥à¤¯à¥‹à¤ªà¥à¤°,418.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,432,Shivpuri,à¤¶à¤¿à¤µà¤ªà¥à¤°à¥€,423.0
+1,Jammu And Kashmir,JAMMU AND KASHMIR,1.0,625,Shopian,SHOPIAN,13.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,433,Sidhi,à¤¸à¥€à¤§à¥€,462.0
+23,Madhya Pradesh,MADHYA PRADESH,23.0,638,Singrauli,à¤¸à¤¿à¤‚à¤—à¤°à¥Œà¤²à¥€,463.0
+9,Uttar Pradesh,UTTAR PRADESH,9.0,183,Sitapur,SITAPUR,154.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,496,Solapur,à¤¸à¥‹à¤²à¤¾à¤ªà¥‚à¤°,526.0
+11,Sikkim,SIKKIM,11.0,742,Soreng,Soreng,0.0
+7,Delhi,DELHI,7.0,83,South,SOUTH,98.0
+18,Assam,ASSAM,18.0,707,South Salmara Mancachar,,0.0
+17,Meghalaya,MEGHALAYA,17.0,663,South West Garo Hills,SOUTH WEST GARO HILLS,0.0
+28,Andhra Pradesh,ANDHRA PRADESH,28.0,519,Srikakulam,SRIKAKULAM,542.0
+22,Chhattisgarh,à¤›à¤¤à¥à¤¤à¥€à¤¸à¤—à¥,22.0,642,Sukma,à¤¸à¥à¤•à¤®à¤¾,0.0
+10,Bihar,BIHAR,10.0,223,Supaul,à¤¸à¥à¤ªà¥Œà¤²,208.0
+18,Assam,ASSAM,18.0,756,Tamulpur,,0.0
+5,Uttarakhand,UTTARAKHAND,5.0,55,Tehri Garhwal,TEHRI GARHWAL,59.0
+27,Maharashtra,à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°,27.0,497,Thane,à¤ à¤¾à¤£à¥‡,517.0
+32,Kerala,KERALA,32.0,565,Thiruvananthapuram,à´¤à´¿à´°àµà´µà´¨à´¨àµà´¤à´ªàµà´°à´‚,601.0
+33,Tamil Nadu,TAMIL NADU,33.0,591,Tiruchirappalli,TIRUCHIRAPPALLI,614.0
+33,Tamil Nadu,TAMIL NADU,33.0,634,Tiruppur,TIRUPPUR,633.0
+33,Tamil Nadu,TAMIL NADU,33.0,593,Tiruvannamalai,TIRUVANNAMALAI,606.0
+8,Rajasthan,RAJASTHAN,8.0,117,Udaipur,UDAIPUR,130.0
+18,Assam,ASSAM,18.0,617,Udalguri,,326.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,240,Upper Siang,UPPER SIANG,252.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,550,Uttara Kannada,à²‰à²¤à³à²¤à²° à²•à²¨à³à²¨à²¡,563.0
+5,Uttarakhand,UTTARAKHAND,5.0,57,Uttar Kashi,UTTAR KASHI,56.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,522,Warangal,à°µà°°à°‚à°—à°²à±,540.0
+32,Kerala,KERALA,32.0,567,Wayanad,à´µà´¯à´¨à´¾à´Ÿàµ,590.0
+17,Meghalaya,MEGHALAYA,17.0,278,West Garo Hills,WEST GARO HILLS,293.0
+17,Meghalaya,MEGHALAYA,17.0,275,West Jaintia Hills,WEST JAINTIA HILLS,299.0
+12,Arunachal Pradesh,ARUNACHAL PRADESH,12.0,243,West Siang,WEST SIANG,250.0
+20,Jharkhand,à¤à¤¾à¤°à¤–à¤‚à¤¡,20.0,343,West Singhbhum,à¤ªà¤¶à¥à¤šà¤¿à¤®à¥€ à¤¸à¤¿à¤‚à¤˜à¤­à¥‚à¤®,368.0
+36,Telangana,à°¤à±†à°²à°‚à°—à°¾à°£,0.0,697,Yadadri Bhuvanagiri,à°¯à°¦à°¾à°¦à±à°°à°¿ à°­à±à°µà°¨à°—à°¿à°°à°¿,0.0
+29,Karnataka,à²•à²°à³à²¨à²¾à²Ÿà²•,29.0,635,Yadgir,à²¯à²¾à²¦à²—à²¿à²°à²¿,580.0
+34,Puducherry,PUDUCHERRY,34.0,601,Yanam,YANAM,634.0
+13,Nagaland,NAGALAND,13.0,251,Zunheboto,ZUNHEBOTO,263.0

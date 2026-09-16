@@ -1,0 +1,423 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, X, Send } from 'lucide-react';
+
+export const NidhiAiAssistant = ({
+  item = {},
+  work = {},
+  featureValues = {},
+  evidenceJson = {},
+  compliance = {},
+  predictive = {},
+  agency = {},
+  amount = 0,
+  riskScore = 50,
+  riskLevel = 'MEDIUM',
+  category = 'General Infrastructure',
+  locState = null,
+  locDistrict = null,
+  locConstituency = null,
+  locCity = null,
+  locBlock = null,
+  locVillage = null,
+  locWard = null,
+  hasRealCoords = false,
+  realLat = null,
+  realLng = null,
+  status = 'RECOMMENDED'
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputQuery, setInputQuery] = useState('');
+  const [messages, setMessages] = useState([
+    {
+      sender: 'ai',
+      text: 'Hello! I am NIDHI AI, your explainable intelligence assistant for this Dossier.\n\nAsk me about this work\'s risk score (' + riskScore.toFixed(1) + '/100), peer median, IQR/Z-score formulas, location provenance, or recommended officer verification actions!'
+    }
+  ]);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      scrollToBottom();
+    }
+  }, [messages, isOpen]);
+
+  const title = work.work_title || item.work_title || 'Public Work Dossier';
+  const peerMedian = featureValues.peer_median;
+  const ratioToMedian = featureValues.ratio_to_median;
+  const bullets = evidenceJson.bullet_points || [];
+
+  const fmtVal = (v) => (v ? '₹' + Number(v).toLocaleString('en-IN') : 'Not available in this source record');
+
+  const generateAnswer = (question) => {
+    const q = question.toLowerCase().trim();
+
+    // 1. Why is this work high/critical risk / why flagged
+    if (q.includes('why') && (q.includes('risk') || q.includes('flag') || q.includes('critical') || q.includes('high'))) {
+      let ans = 'This work "' + title + '" has a Composite Risk Score of ' + riskScore.toFixed(1) + '/100 (' + riskLevel + ' Risk Level).\n\nKey triggers for this flag:\n';
+      ans += '• Primary Risk Category: ' + (item.risk_category || 'Peer Variance') + '\n';
+      if (peerMedian && amount) {
+        const calcRatio = ratioToMedian || (amount / peerMedian).toFixed(2);
+        ans += '• Monetary Allocation: ' + fmtVal(amount) + ' is ' + calcRatio + 'x the category peer median (' + fmtVal(peerMedian) + ').\n';
+      }
+      if (bullets.length > 0) {
+        ans += '• Diagnostic Evidence:\n' + bullets.map(b => '  - ' + b).join('\n') + '\n';
+      }
+      ans += '\nAudit Note: Risk scores represent automated investigation priority, NOT proof of fraud. Human verification is required.';
+      return ans;
+    }
+
+    // 2. How is the risk calculated
+    if (q.includes('how') && (q.includes('calculated') || q.includes('calculation') || q.includes('score'))) {
+      let ans = 'Risk Calculation Breakdown for "' + title + '":\n\n';
+      ans += '1. Peer Category Baseline: Category "' + category + '" median allocation is ' + fmtVal(peerMedian) + '.\n';
+      if (amount && peerMedian) {
+        ans += '2. Spending Ratio Calculation: Work Amount (' + fmtVal(amount) + ') / Peer Median (' + fmtVal(peerMedian) + ') = ' + (ratioToMedian || (amount / peerMedian).toFixed(2)) + 'x.\n';
+      }
+      ans += '3. Multi-Signal Fusion: Combines spending ratio variance, recommendation date burst patterns, description similarity indices, and stage velocity.\n';
+      ans += '4. Final Score: Non-parametric risk score of ' + riskScore.toFixed(1) + '/100 (' + riskLevel + ').\n\n';
+      ans += 'Note: Multi-signal weights are fused dynamically without arbitrary thresholds. Human verification is required.';
+      return ans;
+    }
+
+    // 3. How is the peer median calculated (must check before "what is peer median")
+    if (q.includes('how') && q.includes('peer median')) {
+      return 'How Peer Median is Calculated:\n\nThe peer median is the 50th percentile monetary allocation across all verified historical works in the same LGD category ("' + category + '").\nUnlike standard averages, the median is resilient against extreme outliers in public expenditure datasets.';
+    }
+
+    // 4. What is the peer median
+    if (q.includes('peer median') || (q.includes('peer') && q.includes('median'))) {
+      if (peerMedian) {
+        const calcRatio = ratioToMedian || (amount / peerMedian).toFixed(2);
+        return 'For category "' + category + '", the peer median allocation amount is ' + fmtVal(peerMedian) + '.\nThis work\'s allocation of ' + fmtVal(amount) + ' is ' + calcRatio + 'x the peer median.';
+      }
+      return 'Peer median for category "' + category + '": Not available in this source record.';
+    }
+
+    // 5. How is IQR calculated
+    if (q.includes('iqr') || q.includes('interquartile')) {
+      return 'How Interquartile Range (IQR) is Calculated:\n\n1. Quartile 1 (Q1): 25th percentile of peer category allocations.\n2. Quartile 3 (Q3): 75th percentile of peer category allocations.\n3. IQR Formula: IQR = Q3 - Q1 (middle 50% spread).\n4. Outlier Detection: Works exceeding Q3 + 1.5×IQR are flagged as statistical cost outliers.';
+    }
+
+    // 6. How is Z-score calculated
+    if (q.includes('z-score') || q.includes('z score') || q.includes('zscore') || q.includes('standard deviation')) {
+      return 'How Z-Score is Calculated:\n\nFormula: Z = (Work Amount - Peer Category Mean) / Standard Deviation.\n• Z = 0: Work amount equals the exact category average.\n• Z > +2.0: Work amount is over 2 standard deviations above average (statistically significant cost variance).';
+    }
+
+    // 7. Evidence supporting the flag
+    if (q.includes('evidence') || q.includes('support') || q.includes('proof') || q.includes('signal') || q.includes('diagnostic')) {
+      if (bullets.length > 0) {
+        return 'Diagnostic Evidence Findings for ID ' + (item.source_row_id || item.work_id || 'N/A') + ':\n\n' + bullets.map((b, i) => (i + 1) + '. ' + b).join('\n') + '\n\nAudit Note: Evidence findings serve as administrative investigation signals. Human verification required.';
+      }
+      return 'Diagnostic Evidence for ID ' + (item.source_row_id || item.work_id || 'N/A') + ':\n• Primary Flag Category: ' + (item.risk_category || 'Peer Variance') + '\n• Spending Ratio: ' + (ratioToMedian || '1.0') + 'x peer median.\n• Evidence Details: Not available in this source record.';
+    }
+
+    // 8. Completion / progress / stage / status / what is happening
+    if (q.includes('complet') || q.includes('progress') || q.includes('stage') || q.includes('status') || q.includes('happening') || q.includes('current state') || q.includes('state of') || q.includes('going on')) {
+      const st = (status || '').toUpperCase();
+      if (st.includes('COMPLETED')) {
+        return 'Completion Status for "' + title + '":\n• Current Stage: COMPLETED (100% stage completion recorded).\n• Completed Date: ' + (work.completed_date || featureValues.completed_date || 'Not available in this source record') + '.';
+      }
+      if (st.includes('RECOMMENDED')) {
+        return 'Status for "' + title + '":\n• Current Stage: RECOMMENDED (Stage 1 Proposal).\n• Physical Execution Progress: 0% — Work is recommended; sanction & agency tender process pending.\n• Recommended Date: ' + (work.recommended_date || featureValues.recommended_date || 'Not available in this source record') + '.';
+      }
+      return 'Status for "' + title + '":\n• Current Recorded Stage: ' + (status || 'Not available in this source record') + '.\n• Exact physical completion %: Not available in this source record.';
+    }
+
+    // 9. What does Recommended mean
+    if (q.includes('recommended') && (q.includes('mean') || q.includes('what') || q.includes('definition') || q.includes('explain'))) {
+      return 'Meaning of "RECOMMENDED" Status:\n\nIn the MPLADS / e-SAKSHI lifecycle:\n1. Stage 1 (Recommended): The Member of Parliament has formally submitted the project proposal.\n2. Next Steps: Implementing District Authority (IDA) evaluates technical estimates, issues administrative sanction, and awards execution tenders.\n3. Expenditure: No public funds are disbursed until sanction approval.';
+    }
+
+    // 10. Where is this work located / geography
+    if (q.includes('where') || q.includes('location') || q.includes('located') || q.includes('geography') || q.includes('address') || q.includes('area') || q.includes('region') || q.includes('village') || q.includes('block') || q.includes('constituency') || q.includes('ward')) {
+      let ans = 'Administrative Location Chain for "' + title + '":\n\n';
+      ans += '• State: ' + (locState || 'Not available in this source record') + '\n';
+      ans += '• District: ' + (locDistrict || 'Not available in this source record') + '\n';
+      ans += '• Constituency: ' + (locConstituency || 'Not available in this source record') + '\n';
+      ans += '• City/Town: ' + (locCity || 'Not available in this source record') + '\n';
+      ans += '• Block: ' + (locBlock || 'Not available in this source record') + '\n';
+      ans += '• Village/Locality: ' + (locVillage || 'Not available in this source record') + '\n';
+      ans += '• Ward: ' + (locWard || 'Not available in this source record') + '\n\n';
+      if (hasRealCoords) {
+        ans += '• GPS Coordinates: Verified ' + realLat + '° N, ' + realLng + '° E';
+      } else {
+        ans += '• GPS Coordinates: Not available in this source record';
+      }
+      return ans;
+    }
+
+    // 11. What information is missing / incomplete
+    if (q.includes('missing') || q.includes('incomplete') || q.includes('not available') || q.includes('gap') || q.includes('absent')) {
+      const missing = [];
+      if (!locWard) missing.push('Ward Number');
+      if (!locVillage) missing.push('Village / Locality');
+      if (!locBlock) missing.push('Block Name');
+      if (!locCity) missing.push('City / Town');
+      if (!hasRealCoords) missing.push('Verified Geo-tag GPS Coordinates');
+      if (!work.mp_name && !item.mp_name) missing.push('MP Name');
+      if (!work.ida_name && !agency.ida_name) missing.push('Implementing District Authority (IDA)');
+
+      if (missing.length > 0) {
+        return 'Missing Source Fields for ID ' + (item.source_row_id || item.work_id || 'N/A') + ':\n\n' + missing.map(m => '• ' + m + ': Not available in this source record').join('\n') + '\n\nNote: Zero fake data is generated. Unrecorded fields remain transparently flagged for human audit.';
+      }
+      return 'All primary administrative fields for ID ' + (item.source_row_id || item.work_id || 'N/A') + ' are present in the portal source record.';
+    }
+
+    // 12. Who is responsible / MP / agency / implementing authority
+    if (q.includes('who') || q.includes('responsible') || q.includes('mp') || q.includes('member of parliament') || q.includes('agency') || q.includes('ida') || q.includes('implementing') || q.includes('authority') || q.includes('department') || q.includes('official')) {
+      const mpName = work.mp_name || item.mp_name || agency.mp_name || 'Not available in this source record';
+      const idaName = work.ida_name || agency.ida_name || 'Not available in this source record';
+      let ans = 'Responsible Parties for "' + title + '":\n\n';
+      ans += '• Recommending MP: ' + mpName + '\n';
+      ans += '• Constituency: ' + (locConstituency || 'Not available in this source record') + '\n';
+      ans += '• Implementing District Authority (IDA): ' + idaName + '\n';
+      ans += '• State Administration: ' + (locState || 'Not available in this source record') + '\n\n';
+      ans += 'The MP recommends; the IDA evaluates, sanctions, and executes the work.';
+      return ans;
+    }
+
+    // 13. Financial situation / amounts / budget / money / cost / expenditure / allocation
+    if (q.includes('financial') || q.includes('money') || q.includes('amount') || q.includes('budget') || q.includes('cost') || q.includes('expenditure') || q.includes('spending') || q.includes('allocation') || q.includes('fund') || q.includes('rupee') || q.includes('₹') || q.includes('crore') || q.includes('lakh')) {
+      let ans = 'Financial Profile for "' + title + '":\n\n';
+      ans += '• Allocated Amount: ' + fmtVal(amount) + '\n';
+      ans += '• Category Peer Median: ' + fmtVal(peerMedian) + '\n';
+      if (peerMedian && amount) {
+        const calcRatio = ratioToMedian || (amount / peerMedian).toFixed(2);
+        ans += '• Spending Ratio vs Peers: ' + calcRatio + 'x (this work allocates ' + calcRatio + ' times the category median)\n';
+      }
+      ans += '• Category: ' + category + '\n';
+      ans += '• Current Status: ' + (status || 'RECOMMENDED') + ' — no expenditure released until sanction.\n\n';
+      ans += 'Audit Flag: Spending ratio is a primary anomaly signal used in risk scoring.';
+      return ans;
+    }
+
+    // 14. Next steps / what to do / actions / officer verification / recommendations
+    if (q.includes('next step') || q.includes('what should') || q.includes('what to do') || q.includes('action') || q.includes('verify') || q.includes('solution') || q.includes('officer') || q.includes('recommend') || q.includes('check') || q.includes('investigate') || q.includes('audit')) {
+      const codes = (item.reason_codes || [item.risk_category || 'COST_OUTLIER']);
+      const codeStr = (Array.isArray(codes) ? codes.join(' ') : String(codes)).toUpperCase();
+
+      let ans = 'Officer Recommended Verification Actions for "' + title + '":\n\n';
+      if (codeStr.includes('COST') || codeStr.includes('OUTLIER')) {
+        ans += '1. Sanction Limits: Verify technical estimates against peer category median (' + fmtVal(peerMedian) + ').\n';
+      }
+      if (codeStr.includes('SIMILAR') || codeStr.includes('DESCRIPTION')) {
+        ans += '2. Work Uniqueness: Confirm recommended works across neighboring constituencies are distinct projects.\n';
+      }
+      if (codeStr.includes('BURST') || codeStr.includes('CONCENTRATION')) {
+        ans += '3. Recommendation Pattern: Audit single-day recommendation burst dates (' + (work.recommended_date || 'recorded date') + ').\n';
+      }
+      if (codeStr.includes('DELAY') || codeStr.includes('TIMELINE')) {
+        ans += '4. Progress Audit: Inspect physical site progress and validate milestone completion certificates.\n';
+      }
+      ans += '5. Documentation: Cross-verify source portal data against physical site records and IDA files.\n';
+      ans += '\nMandatory Rule: Risk is an investigation priority, NOT proof of fraud. Human verification required.';
+      return ans;
+    }
+
+    // 15. Unusual / suspicious / anomaly / why flagged (without explicit "why" word)
+    if (q.includes('unusual') || q.includes('suspicious') || q.includes('anomaly') || q.includes('strange') || q.includes('concern') || q.includes('worrying') || q.includes('odd') || q.includes('different') || q.includes('stand out')) {
+      let ans = 'Anomaly Profile for "' + title + '" (Risk Score: ' + riskScore.toFixed(1) + '/100, ' + riskLevel + '):\n\n';
+      ans += '• Primary Flag: ' + (item.risk_category || 'Peer Variance') + '\n';
+      if (peerMedian && amount) {
+        const calcRatio = ratioToMedian || (amount / peerMedian).toFixed(2);
+        ans += '• Allocation is ' + calcRatio + 'x the category peer median (' + fmtVal(peerMedian) + ')\n';
+      }
+      if (bullets.length > 0) {
+        ans += '• Evidence Signals:\n' + bullets.slice(0, 3).map(b => '  - ' + b).join('\n') + '\n';
+      }
+      ans += '\nThis combination of signals triggered the automated risk flag. Human investigation is required to determine actual irregularity.';
+      return ans;
+    }
+
+    // 16. Compliance / rules / regulations / violation
+    if (q.includes('compliance') || q.includes('rule') || q.includes('regulation') || q.includes('violation') || q.includes('guideline') || q.includes('policy') || q.includes('legal') || q.includes('norms')) {
+      const complianceFlags = compliance && typeof compliance === 'object' ? Object.entries(compliance).filter(([k, v]) => v).map(([k]) => k) : [];
+      let ans = 'Compliance Assessment for "' + title + '":\n\n';
+      if (complianceFlags.length > 0) {
+        ans += 'Active Compliance Signals:\n' + complianceFlags.map(f => '• ' + f).join('\n') + '\n\n';
+      } else {
+        ans += '• No specific compliance violation flags recorded in source data.\n\n';
+      }
+      ans += 'Audit Note: Compliance data is sourced from the portal source record. Independent verification with IDA administrative files is required.';
+      return ans;
+    }
+
+    // 17. Similar works / duplicate / other works / related
+    if (q.includes('similar') || q.includes('duplicate') || q.includes('other work') || q.includes('related work') || q.includes('same') || q.includes('parallel')) {
+      const codes = (item.reason_codes || []).toString().toUpperCase();
+      let ans = 'Similar Works Analysis for "' + title + '":\n\n';
+      if (codes.includes('SIMILAR') || codes.includes('DESCRIPTION')) {
+        ans += '• SIMILAR_DESCRIPTION flag is active: The risk engine detected works with similar names across constituencies.\n';
+        ans += '• This may indicate work splitting or duplicated project recommendations.\n';
+      } else {
+        ans += '• No direct SIMILAR_DESCRIPTION flag active for this work.\n';
+      }
+      ans += '• Category Group: "' + category + '" — verify other works in this MP constituency within the same category.\n';
+      ans += '\nOfficer Action: Cross-check works list in the IDA district files for overlapping scope.';
+      return ans;
+    }
+
+    // 18. Summary / overview / brief / tell me about / about this / what is this / describe
+    if (q.includes('summar') || q.includes('overview') || q.includes('brief') || q.includes('tell me') || q.includes('about this') || q.includes('what is this') || q.includes('describe') || q.includes('this project') || q.includes('this case') || q.includes('this work')) {
+      let ans = 'Work Intelligence Summary\n\n';
+      ans += '• Title: ' + title + '\n';
+      ans += '• Work ID: ' + (item.source_row_id || item.work_id || 'N/A') + '\n';
+      ans += '• Category: ' + category + '\n';
+      ans += '• Status: ' + (status || 'RECOMMENDED') + '\n';
+      ans += '• Allocated Amount: ' + fmtVal(amount) + '\n';
+      ans += '• Peer Median: ' + fmtVal(peerMedian) + '\n';
+      ans += '• Risk Score: ' + riskScore.toFixed(1) + '/100 (' + riskLevel + ')\n';
+      ans += '• Primary Risk Flag: ' + (item.risk_category || 'Peer Variance') + '\n';
+      ans += '• Location: ' + (locState || 'N/A') + (locDistrict ? ', ' + locDistrict : '') + (locConstituency ? ' | ' + locConstituency : '') + '\n';
+      if (bullets.length > 0) {
+        ans += '• Key Evidence: ' + bullets[0] + '\n';
+      }
+      ans += '\nAsk me for specific details: risk calculation, peer median, IQR/Z-score, who is responsible, financial profile, or recommended verification steps.';
+      return ans;
+    }
+
+    // 19. General "what is happening" / explain / general questions about this work
+    if (q.includes('what') || q.includes('explain') || q.includes('detail') || q.includes('know') || q.includes('info') || q.includes('information')) {
+      let ans = 'Dossier Intelligence for ID ' + (item.source_row_id || item.work_id || 'N/A') + ':\n\n';
+      ans += '• Title: ' + title + '\n';
+      ans += '• Category: ' + category + '\n';
+      ans += '• Status: ' + (status || 'RECOMMENDED') + '\n';
+      ans += '• Allocated Amount: ' + fmtVal(amount) + '\n';
+      ans += '• Risk Score: ' + riskScore.toFixed(1) + '/100 (' + riskLevel + ')\n';
+      ans += '• Location: ' + (locState || 'N/A') + (locConstituency ? ', ' + locConstituency : '') + '\n';
+      ans += '\nThis work is flagged for investigation priority. Ask me about specific aspects: risk, financials, location, who is responsible, compliance, or what to verify.';
+      return ans;
+    }
+
+    // Default response — only for truly off-topic questions
+    return 'NIDHI AI Assistant — Dossier ID ' + (item.source_row_id || item.work_id || 'N/A') + '\n\n• Work: ' + title + '\n• Allocation: ' + fmtVal(amount) + '\n• Risk: ' + riskScore.toFixed(1) + '/100 (' + riskLevel + ')\n• Location: ' + (locState || 'N/A') + (locConstituency ? ', ' + locConstituency : '') + '\n\nI can answer questions about risk calculation, peer medians, IQR/Z-score, evidence, location, financials, who is responsible, compliance, similar works, or recommended verification steps. Please rephrase your question.';
+  };
+
+  const handleSend = (queryText) => {
+    const txt = queryText || inputQuery;
+    if (!txt || !txt.trim()) return;
+
+    const userMsg = { sender: 'user', text: txt };
+    const answer = generateAnswer(txt);
+    const aiMsg = { sender: 'ai', text: answer };
+
+    setMessages(prev => [...prev, userMsg, aiMsg]);
+    if (!queryText) setInputQuery('');
+  };
+
+  const quickPills = [
+    'Why is this work flagged?',
+    'How is risk calculated?',
+    'What is the peer median?',
+    'How is IQR calculated?',
+    'How is Z-score calculated?',
+    'Where is this work located?',
+    'What should officer verify?'
+  ];
+
+  return (
+    <div className="relative z-30">
+      {/* Floating Circular NIDHI AI Trigger Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gradient-to-r from-amber-500 to-indigo-600 hover:from-amber-400 hover:to-indigo-500 text-white font-mono font-bold text-xs shadow-xl shadow-amber-500/10 border border-amber-400/30 transition-all cursor-pointer active:scale-95"
+        title="Open NIDHI AI Assistant for this Dossier"
+      >
+        <Sparkles className="w-4 h-4 text-amber-200 animate-pulse" />
+        <span>NIDHI AI</span>
+      </button>
+
+      {/* Compact Assistant Chat Panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+            className="fixed bottom-4 sm:bottom-20 right-4 sm:right-10 w-[calc(100vw-2rem)] sm:w-[420px] max-w-md h-[80vh] sm:h-[460px] max-h-[520px] bg-slate-950 border border-slate-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-slate-100 z-50"
+          >
+            {/* Panel Header */}
+            <div className="p-4 border-b border-slate-800 bg-slate-900/90 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-amber-500/20 border border-amber-500/30">
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-100 font-mono">NIDHI AI Assistant</h4>
+                  <span className="text-[10px] text-slate-400 font-mono">Context: {title.slice(0, 32)}...</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Messages Scroll Area */}
+            <div className="p-4 space-y-3 overflow-y-auto flex-1 text-xs">
+              {messages.map((m, idx) => (
+                <div
+                  key={idx}
+                  className={`flex ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[85%] p-3 rounded-2xl whitespace-pre-wrap leading-relaxed font-sans ${
+                      m.sender === 'user'
+                        ? 'bg-indigo-600 text-white rounded-br-none'
+                        : 'bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px] rounded-bl-none'
+                    }`}
+                  >
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Quick Pills */}
+            <div className="px-4 py-2 bg-slate-900/50 border-t border-slate-800/80 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+              {quickPills.map((pill, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleSend(pill)}
+                  className="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600/30 text-indigo-300 hover:text-white border border-indigo-500/20 text-[10px] font-mono whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+                >
+                  {pill}
+                </button>
+              ))}
+            </div>
+
+            {/* Input Bar */}
+            <div className="p-3 border-t border-slate-800 bg-slate-900 flex items-center gap-2 shrink-0">
+              <input
+                type="text"
+                value={inputQuery}
+                onChange={(e) => setInputQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                placeholder="Ask NIDHI AI about this Dossier..."
+                className="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500/50 font-mono"
+              />
+              <button
+                onClick={() => handleSend()}
+                className="p-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all cursor-pointer"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default NidhiAiAssistant;

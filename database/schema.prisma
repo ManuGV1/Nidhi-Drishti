@@ -1,0 +1,336 @@
+// NIDHIDRISHTI Stage 2: Prisma ORM Schema
+// Target Database: PostgreSQL 18+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model LgdState {
+  stateCode            Int             @id @map("state_code")
+  stateNameEnglish     String          @map("state_name_english") @db.VarChar(100)
+  stateNameLocal       String?         @map("state_name_local") @db.VarChar(150)
+  stateCensus2011Code  Int?            @map("state_census2011_code")
+  stateOrUt            String          @map("state_or_ut") @db.Char(1)
+  lastUpdated          DateTime?       @map("last_updated") @db.Date
+  sourceFile           String          @default("04_lgd_states.csv") @map("source_file") @db.VarChar(255)
+  ingestedAt           DateTime        @default(now()) @map("ingested_at") @db.Timestamptz
+
+  districts            LgdDistrict[]
+  subdistricts         LgdSubdistrict[]
+  constituencies       Constituency[]
+
+  @@map("lgd_states")
+}
+
+model LgdDistrict {
+  districtCode         Int              @id @map("district_code")
+  stateCode            Int              @map("state_code")
+  districtNameEnglish  String           @map("district_name_english") @db.VarChar(150)
+  districtNameLocal    String?          @map("district_name_local") @db.VarChar(200)
+  districtCensus2011Code Int?           @map("district_census2011_code")
+  sourceFile           String           @default("03_lgd_districts.csv") @map("source_file") @db.VarChar(255)
+  ingestedAt           DateTime         @default(now()) @map("ingested_at") @db.Timestamptz
+
+  state                LgdState         @relation(fields: [stateCode], references: [stateCode])
+  subdistricts         LgdSubdistrict[]
+
+  @@map("lgd_districts")
+}
+
+model LgdSubdistrict {
+  subdistrictCode      Int              @id @map("subdistrict_code")
+  districtCode         Int              @map("district_code")
+  stateCode            Int              @map("state_code")
+  subdistrictNameEnglish String         @map("subdistrict_name_english") @db.VarChar(150)
+  subdistrictNameLocal String?          @map("subdistrict_name_local") @db.VarChar(200)
+  sourceFile           String           @default("05_lgd_subdistricts.csv") @map("source_file") @db.VarChar(255)
+  ingestedAt           DateTime         @default(now()) @map("ingested_at") @db.Timestamptz
+
+  district             LgdDistrict      @relation(fields: [districtCode], references: [districtCode])
+  state                LgdState         @relation(fields: [stateCode], references: [stateCode])
+
+  @@map("lgd_subdistricts")
+}
+
+model MemberOfParliament {
+  mpId                 Int              @id @default(autoincrement()) @map("mp_id")
+  mpName               String           @unique @map("mp_name") @db.VarChar(255)
+  house                String?          @db.VarChar(50)
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("members_of_parliament")
+}
+
+model Constituency {
+  constituencyId       Int              @id @default(autoincrement()) @map("constituency_id")
+  constituencyName     String           @map("constituency_name") @db.VarChar(150)
+  stateCode            Int?             @map("state_code")
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  state                LgdState?        @relation(fields: [stateCode], references: [stateCode])
+
+  @@unique([constituencyName, stateCode], name: "uq_constituency_state")
+  @@map("constituencies")
+}
+
+model ImplementingAgency {
+  idaId                Int              @id @default(autoincrement()) @map("ida_id")
+  idaName              String           @unique @map("ida_name") @db.VarChar(255)
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("implementing_agencies")
+}
+
+model WorkAll {
+  sourceRowId          Int              @id @map("source_row_id")
+  sourceFile           String           @default("mplads_all_works.csv") @map("source_file") @db.VarChar(255)
+  mpName               String           @map("mp_name") @db.VarChar(255)
+  workTitle            String           @map("work_title") @db.Text
+  category             String?          @db.VarChar(100)
+  stateName            String           @map("state_name") @db.VarChar(100)
+  constituencyName     String           @map("constituency_name") @db.VarChar(150)
+  idaName              String           @map("ida_name") @db.VarChar(255)
+  city                 String?          @db.VarChar(150)
+  ward                 String?          @db.VarChar(150)
+  block                String?          @db.VarChar(150)
+  village              String?          @db.VarChar(150)
+  recommendedDate      DateTime?        @map("recommended_date") @db.Date
+  allocationAmount     Decimal?         @map("allocation_amount") @db.Decimal(15, 2)
+  idaApprovalStatus    String?          @map("ida_approval_status") @db.VarChar(100)
+  workStatus           String?          @map("work_status") @db.VarChar(100)
+  house                String?          @db.VarChar(50)
+  ingestedAt           DateTime         @default(now()) @map("ingested_at") @db.Timestamptz
+
+  financials           WorkFinancial[]
+  progress             WorkProgress[]
+  documents            WorkDocument[]
+  tenders              ProcurementTender[]
+  riskResults          RiskAnomalyResult[]
+
+  @@index([stateName], map: "idx_works_all_state")
+  @@index([constituencyName], map: "idx_works_all_constituency")
+  @@index([mpName], map: "idx_works_all_mp")
+  @@index([workStatus], map: "idx_works_all_status")
+  @@index([recommendedDate], map: "idx_works_all_recommended_date")
+  @@index([stateName, constituencyName, workStatus], map: "idx_works_all_drilldown")
+  @@map("works_all")
+}
+
+model WorkCompleted {
+  workId               BigInt           @id @map("work_id")
+  sourceFile           String           @default("mplads_completed_works.csv") @map("source_file") @db.VarChar(255)
+  sourceRowId          Int              @map("source_row_id")
+  workDescription      String?          @map("work_description") @db.Text
+  category             String?          @db.VarChar(100)
+  mpName               String           @map("mp_name") @db.VarChar(255)
+  constituencyName     String           @map("constituency_name") @db.VarChar(150)
+  stateName            String           @map("state_name") @db.VarChar(100)
+  house                String?          @db.VarChar(50)
+  finalAmount          Decimal          @map("final_amount") @db.Decimal(15, 2)
+  completedDate        DateTime?        @map("completed_date") @db.Date
+  hasImages            Boolean          @default(false) @map("has_images")
+  averageRating        Decimal?         @map("average_rating") @db.Decimal(3, 2)
+  idaName              String           @map("ida_name") @db.VarChar(255)
+  ingestedAt           DateTime         @default(now()) @map("ingested_at") @db.Timestamptz
+
+  financials           WorkFinancial[]
+  progress             WorkProgress[]
+  documents            WorkDocument[]
+  tenders              ProcurementTender[]
+  riskResults          RiskAnomalyResult[]
+
+  @@index([stateName], map: "idx_works_completed_state")
+  @@index([mpName], map: "idx_works_completed_mp")
+  @@index([completedDate], map: "idx_works_completed_date")
+  @@index([stateName, category, finalAmount], map: "idx_works_completed_analytics")
+  @@map("works_completed")
+}
+
+model WorkFinancial {
+  financialId          BigInt           @id @default(autoincrement()) @map("financial_id")
+  workType             String           @map("work_type") @db.VarChar(20)
+  sourceRowId          Int?             @map("source_row_id")
+  workId               BigInt?          @map("work_id")
+  allocatedAmount      Decimal?         @map("allocated_amount") @db.Decimal(15, 2)
+  finalAmount          Decimal?         @map("final_amount") @db.Decimal(15, 2)
+  currency             String           @default("INR") @db.VarChar(10)
+  sourceFile           String           @map("source_file") @db.VarChar(255)
+  ingestedAt           DateTime         @default(now()) @map("ingested_at") @db.Timestamptz
+
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+
+  @@map("work_financials")
+}
+
+model WorkProgress {
+  progressId           BigInt           @id @default(autoincrement()) @map("progress_id")
+  workType             String           @map("work_type") @db.VarChar(20)
+  sourceRowId          Int?             @map("source_row_id")
+  workId               BigInt?          @map("work_id")
+  statusName           String?          @map("status_name") @db.VarChar(100)
+  statusDate           DateTime?        @map("status_date") @db.Date
+  completionPercentage Decimal?         @map("completion_percentage") @db.Decimal(5, 2)
+  notes                String?          @db.Text
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+
+  @@map("work_progress")
+}
+
+model Contractor {
+  contractorId         Int              @id @default(autoincrement()) @map("contractor_id")
+  companyName          String           @map("company_name") @db.VarChar(255)
+  gstin                String?          @db.VarChar(20)
+  pan                  String?          @db.VarChar(10)
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  contracts            Contract[]
+
+  @@map("contractors")
+}
+
+model ProcurementTender {
+  tenderId             String           @id @map("tender_id") @db.VarChar(100)
+  workId               BigInt?          @map("work_id")
+  sourceRowId          Int?             @map("source_row_id")
+  tenderTitle          String           @map("tender_title") @db.Text
+  publishedDate        DateTime?        @map("published_date") @db.Date
+  estimatedValue       Decimal?         @map("estimated_value") @db.Decimal(15, 2)
+  status               String?          @db.VarChar(50)
+
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+  contracts            Contract[]
+
+  @@map("procurement_tenders")
+}
+
+model Contract {
+  contractId           String           @id @map("contract_id") @db.VarChar(100)
+  tenderId             String?          @map("tender_id") @db.VarChar(100)
+  contractorId         Int?             @map("contractor_id")
+  awardedAmount        Decimal          @map("awarded_amount") @db.Decimal(15, 2)
+  awardDate            DateTime?        @map("award_date") @db.Date
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  tender               ProcurementTender? @relation(fields: [tenderId], references: [tenderId])
+  contractor           Contractor?        @relation(fields: [contractorId], references: [contractorId])
+  payments             PaymentTransaction[]
+
+  @@map("contracts")
+}
+
+model PaymentTransaction {
+  paymentId            String           @id @map("payment_id") @db.VarChar(100)
+  contractId           String?          @map("contract_id") @db.VarChar(100)
+  amount               Decimal          @db.Decimal(15, 2)
+  paymentDate          DateTime         @map("payment_date") @db.Date
+  paymentMode          String?          @map("payment_mode") @db.VarChar(50)
+
+  contract             Contract?        @relation(fields: [contractId], references: [contractId])
+
+  @@map("payment_transactions")
+}
+
+model WorkDocument {
+  documentId           BigInt           @id @default(autoincrement()) @map("document_id")
+  workId               BigInt?          @map("work_id")
+  sourceRowId          Int?             @map("source_row_id")
+  documentType         String           @map("document_type") @db.VarChar(50)
+  fileUri              String           @map("file_uri") @db.Text
+  uploadedAt           DateTime         @default(now()) @map("uploaded_at") @db.Timestamptz
+
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+
+  @@map("work_documents")
+}
+
+model RiskRun {
+  runId               String              @id @default(dbgenerated("gen_random_uuid()")) @map("run_id") @db.Uuid
+  detectorVersion     String              @map("detector_version") @db.VarChar(50)
+  featureVersion      String              @map("feature_version") @db.VarChar(50)
+  sourceDataVersion   String              @map("source_data_version") @db.VarChar(100)
+  processedCount      Int                 @map("processed_count")
+  highRiskCount       Int                 @map("high_risk_count")
+  criticalRiskCount   Int                 @map("critical_risk_count")
+  durationSeconds     Decimal             @map("duration_seconds") @db.Decimal(8, 2)
+  executedAt          DateTime            @default(now()) @map("executed_at") @db.Timestamptz
+
+  results             RiskAnomalyResult[]
+
+  @@map("risk_runs")
+}
+
+model RiskAnomalyResult {
+  anomalyId            BigInt           @id @default(autoincrement()) @map("anomaly_id")
+  runId                String?          @map("run_id") @db.Uuid
+  workType             String           @map("work_type") @db.VarChar(20)
+  sourceRowId          Int?             @map("source_row_id")
+  workId               BigInt?          @map("work_id")
+  riskScore            Decimal          @map("risk_score") @db.Decimal(5, 2)
+  riskLevel            String           @map("risk_level") @db.VarChar(20)
+  riskCategory         String           @map("risk_category") @db.VarChar(100)
+  reasonCodes          Json             @map("reason_codes")
+  evidenceJson         Json             @map("evidence_json")
+  featureValuesJson    Json             @map("feature_values_json")
+  peerStatsJson        Json             @map("peer_stats_json")
+  detectorVersion      String           @default("v1.0.0") @map("detector_version") @db.VarChar(50)
+  featureVersion       String           @default("v1.0.0") @map("feature_version") @db.VarChar(50)
+  calculatedAt         DateTime         @default(now()) @map("calculated_at") @db.Timestamptz
+
+  riskRun              RiskRun?         @relation(fields: [runId], references: [runId], onDelete: Cascade)
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+
+  @@unique([runId, sourceRowId], map: "uq_risk_run_recommended")
+  @@unique([runId, workId], map: "uq_risk_run_completed")
+  @@index([riskLevel], map: "idx_risk_results_level")
+  @@index([riskScore], map: "idx_risk_results_score")
+  @@index([runId], map: "idx_risk_results_run")
+  @@map("risk_anomaly_results")
+}
+
+model InvestigationCase {
+  caseId               BigInt           @id @default(autoincrement()) @map("case_id")
+  caseNumber           String           @unique @map("case_number") @db.VarChar(50)
+  workType             String           @map("work_type") @db.VarChar(20)
+  sourceRowId          Int?             @map("source_row_id")
+  workId               BigInt?          @map("work_id")
+  riskScore            Decimal          @map("risk_score") @db.Decimal(5, 2)
+  riskLevel            String           @map("risk_level") @db.VarChar(20)
+  status               String           @default("OPEN") @db.VarChar(50)
+  priority             String           @default("MEDIUM") @db.VarChar(20)
+  assignedTo           String?          @map("assigned_to") @db.VarChar(255)
+  signalsSummary       Json?            @map("signals_summary")
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt            DateTime         @default(now()) @map("updated_at") @db.Timestamptz
+
+  workAll              WorkAll?         @relation(fields: [sourceRowId], references: [sourceRowId])
+  workCompleted        WorkCompleted?   @relation(fields: [workId], references: [workId])
+  notes                InvestigationNote[]
+
+  @@index([status], map: "idx_investigation_status")
+  @@map("investigation_cases")
+}
+
+model InvestigationNote {
+  noteId               BigInt           @id @default(autoincrement()) @map("note_id")
+  caseId               BigInt           @map("case_id")
+  author               String           @db.VarChar(255)
+  noteText             String           @map("note_text") @db.Text
+  actionTaken          String?          @map("action_taken") @db.VarChar(100)
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+
+  case                 InvestigationCase @relation(fields: [caseId], references: [caseId], onDelete: Cascade)
+
+  @@map("investigation_notes")
+}

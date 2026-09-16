@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #090d16;
+    --color-panel: #0f172a;
+    --color-card: #152033;
+    --color-border: #1e293b;
+    --color-accent: #2563eb;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* High-end panel borders & cards */
+.panel-border {
+  border: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+.panel-card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 0.5rem;
+}
+
+.editorial-card {
+  background: linear-gradient(180deg, #152033 0%, #0f172a 100%);
+  border: 1px solid #27354d;
+}
+
+/* Subtle background grid effect */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+}
+
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
