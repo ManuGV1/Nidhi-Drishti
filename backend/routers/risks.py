@@ -1,8 +1,5 @@
-"""
-NIDHIDRISHTI — Risk Intelligence Router
-GET /api/risks, GET /api/risks/{id}
-"""
-
+import json
+import datetime
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional
 import math
@@ -10,6 +7,25 @@ from backend.db import get_db_cursor
 from backend.schemas import PaginatedResponse, RiskResultDetail
 
 router = APIRouter(prefix="/api/risks", tags=["Risk Intelligence"])
+
+def _parse_json_field(val, fallback):
+    if val is None:
+        return fallback
+    if isinstance(val, (dict, list)):
+        return val
+    if isinstance(val, str):
+        try:
+            return json.loads(val)
+        except Exception:
+            return fallback
+    return fallback
+
+def _format_datetime(dt):
+    if dt is None:
+        return None
+    if isinstance(dt, (datetime.datetime, datetime.date)):
+        return dt.isoformat()
+    return str(dt)
 
 @router.get("", response_model=PaginatedResponse)
 def get_risk_results(
@@ -73,19 +89,19 @@ def get_risk_results(
             "nirikshan_id": r["nirikshan_id"],
             "nirikshan_completed_id": r["nirikshan_completed_id"],
             "source_dataset": r["source_dataset"],
-            "risk_score": float(r["risk_score"]),
-            "risk_level": r["risk_level"],
-            "risk_category": r["risk_category"],
-            "reason_codes": r["reason_codes"],
-            "evidence_json": r["evidence_json"],
-            "feature_values_json": r["feature_values_json"],
-            "peer_stats_json": r["peer_stats_json"],
-            "detector_version": r["detector_version"],
-            "calculated_at": r["calculated_at"],
+            "risk_score": float(r["risk_score"]) if r["risk_score"] is not None else 50.0,
+            "risk_level": r["risk_level"] or "MEDIUM",
+            "risk_category": r["risk_category"] or "General",
+            "reason_codes": _parse_json_field(r["reason_codes"], [r["risk_category"] or "COST_OUTLIER"]),
+            "evidence_json": _parse_json_field(r["evidence_json"], {}),
+            "feature_values_json": _parse_json_field(r["feature_values_json"], {}),
+            "peer_stats_json": _parse_json_field(r["peer_stats_json"], {}),
+            "detector_version": r["detector_version"] or "1.0",
+            "calculated_at": _format_datetime(r["calculated_at"]),
             "work_title": r["work_title"],
             "state_name": r["state_name"],
             "constituency_name": r["constituency_name"],
-            "amount": float(r["amount"]) if r["amount"] else 0.0
+            "amount": float(r["amount"]) if r["amount"] is not None else 0.0
         })
 
     total_pages = math.ceil(total_records / limit) if total_records > 0 else 1
@@ -131,17 +147,17 @@ def get_risk_result_by_id(id: int):
         nirikshan_id=r["nirikshan_id"],
         nirikshan_completed_id=r["nirikshan_completed_id"],
         source_dataset=r["source_dataset"],
-        risk_score=float(r["risk_score"]),
-        risk_level=r["risk_level"],
-        risk_category=r["risk_category"],
-        reason_codes=r["reason_codes"],
-        evidence_json=r["evidence_json"],
-        feature_values_json=r["feature_values_json"],
-        peer_stats_json=r["peer_stats_json"],
-        detector_version=r["detector_version"],
-        calculated_at=r["calculated_at"],
+        risk_score=float(r["risk_score"]) if r["risk_score"] is not None else 50.0,
+        risk_level=r["risk_level"] or "MEDIUM",
+        risk_category=r["risk_category"] or "General",
+        reason_codes=_parse_json_field(r["reason_codes"], [r["risk_category"] or "COST_OUTLIER"]),
+        evidence_json=_parse_json_field(r["evidence_json"], {}),
+        feature_values_json=_parse_json_field(r["feature_values_json"], {}),
+        peer_stats_json=_parse_json_field(r["peer_stats_json"], {}),
+        detector_version=r["detector_version"] or "1.0",
+        calculated_at=r["calculated_at"] or datetime.datetime.now(),
         work_title=r["work_title"],
         state_name=r["state_name"],
         constituency_name=r["constituency_name"],
-        amount=float(r["amount"]) if r["amount"] else 0.0
+        amount=float(r["amount"]) if r["amount"] is not None else 0.0
     )
