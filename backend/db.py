@@ -21,8 +21,13 @@ def get_sqlalchemy_engine():
     db_url = get_db_url()
     if db_url:
         conn_url = db_url
+        # Normalize Render's "postgres://" shorthand
         if conn_url.startswith("postgres://"):
             conn_url = conn_url.replace("postgres://", "postgresql://", 1)
+        # Explicitly force psycopg2 dialect so SQLAlchemy 2.x doesn't try to
+        # import the missing psycopg (psycopg3) driver.
+        if conn_url.startswith("postgresql://") and "+psycopg" not in conn_url:
+            conn_url = conn_url.replace("postgresql://", "postgresql+psycopg2://", 1)
         return create_engine(conn_url, pool_pre_ping=True)
 
     db_host = os.getenv("DB_HOST", "localhost")
@@ -30,7 +35,7 @@ def get_sqlalchemy_engine():
     db_name = os.getenv("DB_NAME", "nidhidrishti")
     db_user = os.getenv("DB_USER", "postgres")
     db_password = os.getenv("DB_PASSWORD", "")
-    dev_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+    dev_url = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
     return create_engine(dev_url, pool_pre_ping=True)
 
 engine = get_sqlalchemy_engine()
