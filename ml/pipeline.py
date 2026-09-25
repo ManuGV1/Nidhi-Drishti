@@ -26,27 +26,36 @@ from ml.agency_intelligence import evaluate_agency_intelligence
 from ml.risk_fusion import fuse_risk_scores
 
 DB_CONFIG = {
-    "dbname": "nidhidrishti",
-    "user": "postgres",
-    "password": "",
-    "host": "localhost",
-    "port": 5432
+    "dbname": os.getenv("DB_NAME", "nidhidrishti"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", ""),
+    "host": os.getenv("DB_HOST", "localhost"),
+    "port": int(os.getenv("DB_PORT", "5432"))
 }
 
-def run_intelligence_pipeline(db_config: Dict[str, Any] = None) -> Tuple[str, Dict[str, Any]]:
+def run_intelligence_pipeline(db_config: Dict[str, Any] = None, conn=None) -> Tuple[str, Dict[str, Any]]:
     """
     Executes end-to-end batch intelligence pipeline across MPLADS and Nirikshan datasets.
     Returns (run_id, summary_stats).
     """
-    if db_config is None:
-        db_config = DB_CONFIG
+    close_conn = False
+    if conn is None:
+        if db_config is not None:
+            conn = psycopg2.connect(**db_config)
+            close_conn = True
+        else:
+            try:
+                from backend.db import get_db_connection
+                conn = get_db_connection()
+                close_conn = True
+            except Exception:
+                conn = psycopg2.connect(**DB_CONFIG)
+                close_conn = True
 
     start_time = time.time()
     print("=" * 80)
     print("STARTING NIDHIDRISHTI COMPREHENSIVE INTELLIGENCE PIPELINE")
     print("=" * 80)
-
-    conn = psycopg2.connect(**db_config)
     
     # -------------------------------------------------------------------------
     # 1. LOAD MPLADS SNAPSHOT WORKS
@@ -433,7 +442,8 @@ def run_intelligence_pipeline(db_config: Dict[str, Any] = None) -> Tuple[str, Di
 
     conn.commit()
     cur.close()
-    conn.close()
+    if close_conn:
+        conn.close()
 
     print("Pipeline commit successful! Run ID:", run_id)
     print("=" * 80)

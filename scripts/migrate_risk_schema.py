@@ -1,7 +1,22 @@
+import os
+import sys
 import psycopg2
 
-def migrate_risk_schema():
-    conn = psycopg2.connect(dbname='nidhidrishti', user='postgres', password='', host='localhost', port=5432)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+def migrate_risk_schema(conn=None):
+    close_conn = False
+    if conn is None:
+        try:
+            from backend.db import get_db_connection
+            conn = get_db_connection()
+            close_conn = True
+        except Exception:
+            conn = psycopg2.connect(dbname=os.getenv('DB_NAME', 'nidhidrishti'), user=os.getenv('DB_USER', 'postgres'), password=os.getenv('DB_PASSWORD', ''), host=os.getenv('DB_HOST', 'localhost'), port=int(os.getenv('DB_PORT', '5432')))
+            close_conn = True
+
     cur = conn.cursor()
     
     print("=" * 80)
@@ -64,7 +79,8 @@ def migrate_risk_schema():
 
     conn.commit()
     cur.close()
-    conn.close()
+    if close_conn:
+        conn.close()
 
     print("Schema migration completed successfully.")
 

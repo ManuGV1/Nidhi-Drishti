@@ -46,21 +46,35 @@ class LgdStateModel(Base):
     __tablename__ = 'lgd_states'
     __table_args__ = {'schema': 'public', 'extend_existing': True}
     state_code = Column(Integer, primary_key=True)
-    state_name = Column(String(100), nullable=False)
+    state_name_english = Column(String(100), nullable=False)
+    state_name_local = Column(String(150))
+    state_census2011_code = Column(Integer)
+    state_or_ut = Column(String(10))
+    last_updated = Column(Date)
+    source_file = Column(String(255), default='04_lgd_states.csv')
+    ingested_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 class LgdDistrictModel(Base):
     __tablename__ = 'lgd_districts'
     __table_args__ = {'schema': 'public', 'extend_existing': True}
     district_code = Column(Integer, primary_key=True)
     state_code = Column(Integer, nullable=False)
-    district_name = Column(String(100), nullable=False)
+    district_name_english = Column(String(150), nullable=False)
+    district_name_local = Column(String(200))
+    district_census2011_code = Column(Integer)
+    source_file = Column(String(255), default='03_lgd_districts.csv')
+    ingested_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-class LgdConstituencyModel(Base):
-    __tablename__ = 'lgd_constituencies'
+class LgdSubdistrictModel(Base):
+    __tablename__ = 'lgd_subdistricts'
     __table_args__ = {'schema': 'public', 'extend_existing': True}
-    constituency_code = Column(Integer, primary_key=True)
+    subdistrict_code = Column(Integer, primary_key=True)
+    district_code = Column(Integer, nullable=False)
     state_code = Column(Integer, nullable=False)
-    constituency_name = Column(String(100), nullable=False)
+    subdistrict_name_english = Column(String(150), nullable=False)
+    subdistrict_name_local = Column(String(200))
+    source_file = Column(String(255), default='05_lgd_subdistricts.csv')
+    ingested_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 class WorkRecommendedModel(Base):
     __tablename__ = 'works_all'
@@ -180,13 +194,63 @@ class InvestigationNoteModel(Base):
     action_taken = Column(String(100))
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-def init_db():
-    """Hook to automatically create missing tables on startup using Base.metadata.create_all(bind=engine)."""
+def ensure_database_seeded():
+    """Hook to automatically create tables and safely seed the database if empty."""
     try:
         Base.metadata.create_all(bind=engine)
-        logger.info("Database initialization: Base.metadata.create_all execution completed.")
+        logger.info("Base.metadata.create_all completed.")
+        
+        with get_db_cursor() as cur:
+            cur.execute("""
+                SELECT EXISTS (
+                    SELECT 1 FROM information_schema.tables 
+                    WHERE table_schema = 'public' AND table_name = 'works_all'
+                );
+            """)
+            has_works_table = cur.fetchone()['exists']
+            
+            works_cnt = 0
+            if has_works_table:
+                cur.execute("SELECT COUNT(*) AS cnt FROM public.works_all;")
+                works_cnt = cur.fetchone()['cnt']
+                
+            cur.execute("""
+                SELECT EXISTS (
+                    SELECT 1 FROM information_schema.tables 
+                    WHERE table_schema = 'public' AND table_name = 'risk_anomaly_results'
+                );
+            """)
+            has_risk_table = cur.fetchone()['exists']
+            
+            risk_cnt = 0
+            if has_risk_table:
+                cur.execute("SELECT COUNT(*) AS cnt FROM public.risk_anomaly_results;")
+                risk_cnt = cur.fetchone()['cnt']
+                
+            if works_cnt > 0 and risk_cnt > 0:
+                logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results. Skipping seed.")
+                return
+
+        logger.info("Database unseeded or missing risk results. Loading real datasets...")
+        from scripts.load_database import load_data
+        load_data()
+        
+        from scripts.load_nirikshan import main as load_nirikshan_main
+        load_nirikshan_main()
+        
+        from scripts.migrate_risk_schema import migrate_risk_schema
+        migrate_risk_schema()
+        
+        from ml.pipeline import run_intelligence_pipeline
+        run_id, summary = run_intelligence_pipeline()
+        logger.info(f"Auto-seed completed successfully. Run ID: {run_id}")
+        
     except Exception as e:
-        logger.warning(f"Database initialization warning: {e}")
+        logger.warning(f"Database auto-seeding notice: {e}")
+
+def init_db():
+    """Hook to automatically create missing tables and seed data on startup."""
+    ensure_database_seeded()
 
 # 2. Existing psycopg2 Raw SQL helper functions
 def get_db_connection():

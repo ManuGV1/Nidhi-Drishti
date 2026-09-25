@@ -8,49 +8,63 @@ import pandas as pd
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
-CLEANED_DIR = r"D:\NidhiDristi\Data\cleaned"
-SCHEMA_SQL_PATH = r"D:\NidhiDristi\database\schema.sql"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+CLEANED_DIR = os.path.join(BASE_DIR, "Data", "cleaned")
+SCHEMA_SQL_PATH = os.path.join(BASE_DIR, "database", "schema.sql")
 
 DB_NAME = "nidhidrishti"
-DB_HOST = "localhost"
-DB_PORT = 5432
-DB_USER = "postgres"
-DB_PASSWORD = ""
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = int(os.getenv("DB_PORT", "5432"))
+DB_USER = os.getenv("DB_USER", "postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
 def ensure_database_exists():
     """Step 1: Connect to default postgres DB and ensure nidhidrishti database exists (Outside Transaction)."""
-    print(f"Checking database '{DB_NAME}' existence on {DB_HOST}:{DB_PORT}...")
-    conn = psycopg2.connect(
-        dbname="postgres",
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=DB_PORT
-    )
-    conn.autocommit = True
-    cursor = conn.cursor()
-    cursor.execute("SELECT 1 FROM pg_database WHERE datname = %s;", (DB_NAME,))
-    exists = cursor.fetchone()
-    if not exists:
-        print(f"Creating database '{DB_NAME}'...")
-        cursor.execute(f"CREATE DATABASE {DB_NAME};")
-        print(f"Database '{DB_NAME}' created successfully.")
-    else:
-        print(f"Database '{DB_NAME}' already exists.")
-    cursor.close()
-    conn.close()
+    try:
+        print(f"Checking database '{DB_NAME}' existence on {DB_HOST}:{DB_PORT}...")
+        conn = psycopg2.connect(
+            dbname="postgres",
+            user=DB_USER,
+            password=DB_PASSWORD,
+            host=DB_HOST,
+            port=DB_PORT
+        )
+        conn.autocommit = True
+        cursor = conn.cursor()
+        cursor.execute("SELECT 1 FROM pg_database WHERE datname = %s;", (DB_NAME,))
+        exists = cursor.fetchone()
+        if not exists:
+            print(f"Creating database '{DB_NAME}'...")
+            cursor.execute(f"CREATE DATABASE {DB_NAME};")
+            print(f"Database '{DB_NAME}' created successfully.")
+        else:
+            print(f"Database '{DB_NAME}' already exists.")
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        print(f"Notice: ensure_database_exists skipped ({e})")
 
-def load_data():
-    """Step 2: Connect to nidhidrishti DB, apply schema, and load data inside a transaction."""
-    ensure_database_exists()
-    
-    conn = psycopg2.connect(
-        dbname=DB_NAME,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=DB_PORT
-    )
+def load_data(conn=None):
+    """Step 2: Connect to DB, apply schema, and load data inside a transaction."""
+    close_conn = False
+    if conn is None:
+        try:
+            from backend.db import get_db_connection
+            conn = get_db_connection()
+            close_conn = True
+        except Exception:
+            ensure_database_exists()
+            conn = psycopg2.connect(
+                dbname=DB_NAME,
+                user=DB_USER,
+                password=DB_PASSWORD,
+                host=DB_HOST,
+                port=DB_PORT
+            )
+            close_conn = True
     
     try:
         # Apply schema DDL (CREATE TABLE IF NOT EXISTS)
@@ -236,7 +250,8 @@ def load_data():
         print("ERROR OCCURRED DURING LOAD. Transaction rolled back cleanly.")
         raise e
     finally:
-        conn.close()
+        if close_conn and conn:
+            conn.close()
 
 if __name__ == '__main__':
     load_data()

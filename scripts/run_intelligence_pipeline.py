@@ -6,8 +6,9 @@ Executes the Stage 3 batch intelligence pipeline and logs execution benchmarks.
 import sys
 import os
 
-# Add root directory to PYTHONPATH
-sys.path.insert(0, r"D:\NidhiDristi")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 
 from ml.pipeline import run_intelligence_pipeline
 

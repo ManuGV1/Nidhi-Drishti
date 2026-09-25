@@ -29,7 +29,9 @@ if hasattr(sys.stdout, "reconfigure"):
 # PATHS
 # ------------------------------------------------------------
 
-BASE_DIR = r"D:\NidhiDristi"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 NIRIKSHAN_DIR = os.path.join(
     BASE_DIR,
@@ -38,16 +40,15 @@ NIRIKSHAN_DIR = os.path.join(
     "nirikshan_real"
 )
 
-
 # ------------------------------------------------------------
 # DATABASE CONFIG
 # ------------------------------------------------------------
 
 DB_NAME = "nidhidrishti"
-DB_HOST = "localhost"
-DB_PORT = 5432
-DB_USER = "postgres"
-DB_PASSWORD = ""
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = int(os.getenv("DB_PORT", "5432"))
+DB_USER = os.getenv("DB_USER", "postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
 
 # ------------------------------------------------------------
@@ -922,7 +923,7 @@ def validate_counts(cur):
 # MAIN
 # ============================================================
 
-def main():
+def main(conn=None):
 
     print()
     print("=" * 80)
@@ -957,16 +958,23 @@ def main():
     # Connect PostgreSQL
     # --------------------------------------------------------
 
-    print()
-    print("Connecting to PostgreSQL...")
-
-    conn = psycopg2.connect(
-        dbname=DB_NAME,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=DB_PORT
-    )
+    close_conn = False
+    if conn is None:
+        try:
+            from backend.db import get_db_connection
+            conn = get_db_connection()
+            close_conn = True
+        except Exception:
+            print()
+            print("Connecting to PostgreSQL...")
+            conn = psycopg2.connect(
+                dbname=DB_NAME,
+                user=DB_USER,
+                password=DB_PASSWORD,
+                host=DB_HOST,
+                port=DB_PORT
+            )
+            close_conn = True
 
     try:
 
@@ -1085,10 +1093,10 @@ def main():
 
     finally:
 
-        conn.close()
-
-        print()
-        print("Database connection closed.")
+        if close_conn and conn:
+            conn.close()
+            print()
+            print("Database connection closed.")
 
 
 # ============================================================
