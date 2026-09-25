@@ -40,6 +40,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Automatic Database Table Creation Hook on Startup
+from backend.db import engine, Base, init_db
+
+@app.on_event("startup")
+def startup_event():
+    """Automatic database table creation hook on startup using Base.metadata.create_all(bind=engine)."""
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Startup DB table creation notice: {e}")
+
 # Register Routers
 app.include_router(overview.router)
 app.include_router(geography.router)
