@@ -14,6 +14,8 @@ export const CountUp = ({
   const isInView = useInView(ref, { once: true, margin: '-50px' });
   const hasAnimated = useRef(false);
 
+  const prevValue = useRef(value);
+
   useEffect(() => {
     // Check prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,6 +23,11 @@ export const CountUp = ({
     if (prefersReducedMotion) {
       setDisplayValue(value);
       return;
+    }
+
+    if (prevValue.current !== value) {
+      hasAnimated.current = false;
+      prevValue.current = value;
     }
 
     if (isInView && !hasAnimated.current) {

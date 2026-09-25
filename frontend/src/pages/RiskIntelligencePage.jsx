@@ -20,6 +20,7 @@ import {
   Info
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ResponsibleAiPanel } from '../components/common/ResponsibleAiPanel';
 
 export const RiskIntelligencePage = () => {
   const [risks, setRisks] = useState([]);
@@ -47,13 +48,19 @@ export const RiskIntelligencePage = () => {
       if (workType !== 'ALL') {
         params.work_type = workType;
       }
-      const data = await apiService.getRisks(params);
-      setRisks(data.data || []);
-      setTotalPages(data.total_pages || 1);
-      setTotalRecords(data.total_records || 0);
+      const res = await apiService.getRisks(params);
+      const dataList = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+      setRisks(dataList);
+      setTotalPages(res?.total_pages || 1);
+      setTotalRecords(res?.total_records || dataList.length || 0);
     } catch (err) {
       console.error('Failed to load risks:', err);
-      setError(err.detail || 'Could not fetch risk results from backend.');
+      const msg = typeof err === 'string'
+        ? err
+        : (err?.detail
+            ? (typeof err.detail === 'string' ? err.detail : JSON.stringify(err.detail))
+            : (err?.message || 'Could not fetch risk results from backend. Retrying...'));
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -66,8 +73,8 @@ export const RiskIntelligencePage = () => {
   const handleCreateCase = async (item) => {
     try {
       const payload = {
-        work_type: item.work_type,
-        source_row_id: item.source_row_id,
+        work_type: item.work_type || 'RECOMMENDED',
+        source_row_id: item.source_row_id || item.work_id || item.anomaly_id,
         work_id: item.work_id,
         priority: item.risk_level === 'CRITICAL' ? 'URGENT' : item.risk_level === 'HIGH' ? 'HIGH' : 'MEDIUM',
         assigned_to: 'Oversight Officer',
@@ -77,17 +84,29 @@ export const RiskIntelligencePage = () => {
       setTimeout(() => setInitiatedCaseId(null), 4000);
     } catch (err) {
       console.error('Failed to create case:', err);
-      alert('Case creation error: ' + (err.detail || 'Could not initiate case.'));
+      const errDetail = typeof err === 'string' ? err : (err?.detail ? (typeof err.detail === 'string' ? err.detail : JSON.stringify(err.detail)) : 'Could not initiate case.');
+      alert('Case creation error: ' + errDetail);
     }
   };
 
-  const criticalCount = risks.filter(r => r.risk_level === 'CRITICAL').length;
-  const highCount = risks.filter(r => r.risk_level === 'HIGH').length;
-  const mediumCount = risks.filter(r => r.risk_level === 'MEDIUM').length;
-  const lowCount = risks.filter(r => r.risk_level === 'LOW').length;
+  const safeRisks = Array.isArray(risks) ? risks : [];
+  const criticalCount = safeRisks.filter(r => r && r.risk_level === 'CRITICAL').length;
+  const highCount = safeRisks.filter(r => r && r.risk_level === 'HIGH').length;
+  const mediumCount = safeRisks.filter(r => r && r.risk_level === 'MEDIUM').length;
+  const lowCount = safeRisks.filter(r => r && r.risk_level === 'LOW').length;
+
+  const getParsedJson = (val) => {
+    if (!val) return {};
+    if (typeof val === 'object') return val;
+    try {
+      return JSON.parse(val);
+    } catch (e) {
+      return {};
+    }
+  };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-6 font-sans min-h-screen">
       {/* DETECT HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
         <div>
@@ -114,6 +133,9 @@ export const RiskIntelligencePage = () => {
         </button>
       </div>
 
+      {/* Responsible AI Governance Panel */}
+      <ResponsibleAiPanel variant="compact" />
+
       {/* Case Initiated Toast */}
       {initiatedCaseId && (
         <div className="p-3.5 rounded-xl bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs flex items-center justify-between shadow-lg">
@@ -134,10 +156,10 @@ export const RiskIntelligencePage = () => {
 
         {/* Multi-segment severity progress bar */}
         <div className="w-full h-3 rounded-full bg-slate-950 overflow-hidden flex">
-          <div className="h-full bg-rose-500 transition-all" style={{ width: `${Math.max(5, (criticalCount / Math.max(1, risks.length)) * 100)}%` }} title="Critical Risk" />
-          <div className="h-full bg-amber-500 transition-all" style={{ width: `${Math.max(15, (highCount / Math.max(1, risks.length)) * 100)}%` }} title="High Risk" />
-          <div className="h-full bg-yellow-500 transition-all" style={{ width: `${Math.max(25, (mediumCount / Math.max(1, risks.length)) * 100)}%` }} title="Medium Risk" />
-          <div className="h-full bg-emerald-500 transition-all" style={{ width: `${Math.max(20, (lowCount / Math.max(1, risks.length)) * 100)}%` }} title="Low Risk" />
+          <div className="h-full bg-rose-500 transition-all" style={{ width: `${Math.max(5, (criticalCount / Math.max(1, safeRisks.length)) * 100)}%` }} title="Critical Risk" />
+          <div className="h-full bg-amber-500 transition-all" style={{ width: `${Math.max(15, (highCount / Math.max(1, safeRisks.length)) * 100)}%` }} title="High Risk" />
+          <div className="h-full bg-yellow-500 transition-all" style={{ width: `${Math.max(25, (mediumCount / Math.max(1, safeRisks.length)) * 100)}%` }} title="Medium Risk" />
+          <div className="h-full bg-emerald-500 transition-all" style={{ width: `${Math.max(20, (lowCount / Math.max(1, safeRisks.length)) * 100)}%` }} title="Low Risk" />
         </div>
 
         {/* Legend */}
@@ -215,96 +237,128 @@ export const RiskIntelligencePage = () => {
       {error && <ErrorAlert message={error} onRetry={fetchRisks} />}
 
       {/* PRIORITY SIGNAL CARDS */}
-      {!loading && risks.length > 0 && (
+      {!loading && !error && safeRisks.length > 0 && (
         <div className="space-y-4">
-          {risks.map((item) => (
-            <div
-              key={item.anomaly_id}
-              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition-all shadow-md flex flex-col md:flex-row md:items-start justify-between gap-6 group"
-            >
-              <div className="flex-1 space-y-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <RiskBadge score={item.risk_score} level={item.risk_level} size="lg" />
-                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-950 border border-slate-800 text-slate-300">
-                    {item.work_type} • ID: {item.source_row_id || item.work_id}
-                  </span>
-                  <span className="text-xs font-medium text-slate-400 bg-slate-800/40 px-2 py-0.5 rounded border border-slate-800 font-mono">
-                    Category: <strong className="text-slate-200">{item.risk_category}</strong>
-                  </span>
+          {safeRisks.map((item) => {
+            const evidenceJson = getParsedJson(item.evidence_json);
+            const featureValues = getParsedJson(item.feature_values_json);
+            const bulletPoints = Array.isArray(evidenceJson?.bullet_points) ? evidenceJson.bullet_points : [];
+            const amountVal = item.amount ? Number(item.amount) : 0;
+            const peerMedianVal = featureValues.peer_median ? Number(featureValues.peer_median) : null;
+            const ratioVal = featureValues.ratio_to_median ? String(featureValues.ratio_to_median) : '1.0';
+
+            return (
+              <div
+                key={item.anomaly_id}
+                className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition-all shadow-md flex flex-col md:flex-row md:items-start justify-between gap-6 group"
+              >
+                <div className="flex-1 space-y-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <RiskBadge score={item.risk_score} level={item.risk_level} size="lg" />
+                    <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-950 border border-slate-800 text-slate-300">
+                      {item.work_type} • ID: {item.source_row_id || item.work_id || item.anomaly_id}
+                    </span>
+                    <span className="text-xs font-medium text-slate-400 bg-slate-800/40 px-2 py-0.5 rounded border border-slate-800 font-mono">
+                      Category: <strong className="text-slate-200">{item.risk_category || 'General'}</strong>
+                    </span>
+                  </div>
+
+                  <h3 className="text-sm font-bold text-slate-100 leading-snug group-hover:text-amber-400 transition-colors font-sans">
+                    {item.work_title || 'Work Title Unspecified'}
+                  </h3>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs font-mono">
+                    <div>
+                      <span className="text-slate-500 block text-[10px] uppercase">Location</span>
+                      <span className="font-medium text-slate-200 truncate block">
+                        {item.state_name || 'State Unspecified'} ({item.constituency_name || 'N/A'})
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10px] uppercase">Allocation</span>
+                      <span className="font-mono font-bold text-amber-400">
+                        {amountVal > 0 ? `₹${amountVal.toLocaleString('en-IN')}` : 'Not available'}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10px] uppercase">Peer Median</span>
+                      <span className="font-mono font-medium text-slate-300">
+                        {peerMedianVal ? `₹${peerMedianVal.toLocaleString('en-IN')}` : '—'}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10px] uppercase">Cost Ratio</span>
+                      <span className="font-mono font-bold text-indigo-400">
+                        {ratioVal}x
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Evidence narrative bullets */}
+                  {bulletPoints.length > 0 && (
+                    <div className="space-y-1 pt-1">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-amber-400" />
+                        Diagnostic Intelligence Signals
+                      </span>
+                      <ul className="space-y-1 text-xs text-slate-300 font-sans">
+                        {bulletPoints.map((pt, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                            <span>{typeof pt === 'string' ? pt : JSON.stringify(pt)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
-                <h3 className="text-sm font-bold text-slate-100 leading-snug group-hover:text-amber-400 transition-colors">
-                  {item.work_title || 'Work Title Unspecified'}
-                </h3>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs font-mono">
-                  <div>
-                    <span className="text-slate-500 block text-[10px] uppercase">Location</span>
-                    <span className="font-medium text-slate-200 truncate block">{item.state_name} ({item.constituency_name})</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px] uppercase">Allocation</span>
-                    <span className="font-mono font-bold text-amber-400">
-                      ₹{item.amount ? item.amount.toLocaleString('en-IN') : '0'}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px] uppercase">Peer Median</span>
-                    <span className="font-mono font-medium text-slate-300">
-                      ₹{item.feature_values_json?.peer_median ? item.feature_values_json.peer_median.toLocaleString('en-IN') : '—'}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px] uppercase">Cost Ratio</span>
-                    <span className="font-mono font-bold text-indigo-400">
-                      {item.feature_values_json?.ratio_to_median ? `${item.feature_values_json.ratio_to_median}x` : '1.0x'}
-                    </span>
-                  </div>
+                {/* Action Sidebar */}
+                <div className="flex flex-row md:flex-col items-center gap-2 shrink-0 border-t md:border-t-0 md:border-l border-slate-800 pt-4 md:pt-0 md:pl-6">
+                  <button
+                    onClick={() => setSelectedWorkDossier(item)}
+                    className="flex-1 md:w-44 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-all cursor-pointer shadow-md active:scale-95 font-sans"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>EXAMINE DOSSIER</span>
+                  </button>
+                  <button
+                    onClick={() => handleCreateCase(item)}
+                    className="flex-1 md:w-44 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 text-xs font-medium border border-slate-800 transition-colors font-sans"
+                  >
+                    <FolderPlus className="w-4 h-4" />
+                    <span>Initiate Case</span>
+                  </button>
                 </div>
-
-                {/* Evidence narrative bullets */}
-                {item.evidence_json?.bullet_points && (
-                  <div className="space-y-1 pt-1">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-amber-400" />
-                      Diagnostic Intelligence Signals
-                    </span>
-                    <ul className="space-y-1 text-xs text-slate-300">
-                      {item.evidence_json.bullet_points.map((pt, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </div>
+            );
+          })}
+        </div>
+      )}
 
-              {/* Action Sidebar */}
-              <div className="flex flex-row md:flex-col items-center gap-2 shrink-0 border-t md:border-t-0 md:border-l border-slate-800 pt-4 md:pt-0 md:pl-6">
-                <button
-                  onClick={() => setSelectedWorkDossier(item)}
-                  className="flex-1 md:w-44 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-all cursor-pointer shadow-md active:scale-95"
-                >
-                  <Eye className="w-4 h-4" />
-                  <span>EXAMINE DOSSIER</span>
-                </button>
-                <button
-                  onClick={() => handleCreateCase(item)}
-                  className="flex-1 md:w-44 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 text-xs font-medium border border-slate-800 transition-colors"
-                >
-                  <FolderPlus className="w-4 h-4" />
-                  <span>Initiate Case</span>
-                </button>
-              </div>
-            </div>
-          ))}
+      {/* EMPTY STATE */}
+      {!loading && !error && safeRisks.length === 0 && (
+        <div className="p-12 rounded-2xl bg-slate-900/60 border border-slate-800 text-center space-y-3 shadow-md">
+          <ShieldAlert className="w-10 h-10 text-slate-500 mx-auto" />
+          <h3 className="text-sm font-bold text-slate-200 font-sans">No Risk Anomaly Signals Found</h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto font-sans leading-relaxed">
+            No risk anomaly signals match the currently selected level filter (<strong className="text-amber-400">{activeLevel}</strong>) and dataset (<strong className="text-amber-400">{workType}</strong>).
+          </p>
+          <button
+            onClick={() => {
+              setActiveLevel('ALL');
+              setWorkType('ALL');
+              setPage(1);
+            }}
+            className="mt-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition-colors cursor-pointer"
+          >
+            Reset Filters
+          </button>
         </div>
       )}
 
       {/* Pagination Footer */}
-      {!loading && totalPages > 1 && (
+      {!loading && !error && totalPages > 1 && (
         <div className="flex items-center justify-between pt-4 border-t border-slate-800">
           <span className="text-xs text-slate-400 font-mono">
             Page <strong className="text-slate-200">{page}</strong> of <strong className="text-slate-200">{totalPages}</strong>

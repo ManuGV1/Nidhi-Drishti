@@ -15,6 +15,7 @@ import VendorIntelligencePage from './pages/VendorIntelligencePage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ReportsPage from './pages/ReportsPage';
 import MethodologyPage from './pages/MethodologyPage';
+import CitizenEvidencePage from './pages/CitizenEvidencePage';
 
 // AppShell Layout Wrapper for Dashboard Application
 const AppLayout = () => {
@@ -50,6 +51,7 @@ export const App = () => {
           <Route path="/works" element={<WorksExplorerPage />} />
           <Route path="/works/:id" element={<WorksExplorerPage />} />
           <Route path="/investigations" element={<InvestigationPage />} />
+          <Route path="/citizen-evidence" element={<CitizenEvidencePage />} />
           <Route path="/geography" element={<GeographyPage />} />
           <Route path="/agency-intelligence" element={<VendorIntelligencePage />} />
           <Route path="/vendor-intelligence" element={<VendorIntelligencePage />} />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiService } from '../api/client';
+import { citizenEvidenceService } from '../services/citizenEvidenceService';
 import { RiskBadge } from '../components/common/RiskBadge';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { ErrorAlert } from '../components/common/ErrorAlert';
@@ -17,9 +18,11 @@ import {
   ArrowRight,
   TrendingUp,
   AlertTriangle,
-  Eye
+  Eye,
+  ShieldCheck
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ResponsibleAiPanel } from '../components/common/ResponsibleAiPanel';
 
 const LIFECYCLE_STAGES = ['RECOMMENDED', 'APPROVED', 'SANCTIONED', 'ONGOING', 'COMPLETED'];
 
@@ -97,6 +100,9 @@ export const InvestigationPage = () => {
           </p>
         </div>
       </div>
+
+      {/* Responsible AI Governance Panel */}
+      <ResponsibleAiPanel variant="compact" />
 
       {/* FILTER STATUS TABS */}
       <div className="flex items-center gap-2 pb-2 overflow-x-auto border-b border-slate-800 font-mono">
@@ -205,21 +211,91 @@ export const InvestigationPage = () => {
                   </div>
                 </div>
 
-                {/* HORIZONTAL LIFECYCLE PIPELINE */}
-                <div className="space-y-2 pt-1 font-mono">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                    Public Work Lifecycle Progress State
-                  </span>
-                  <div className="grid grid-cols-5 gap-1.5 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
-                    {LIFECYCLE_STAGES.map((stage, idx) => {
-                      const activeIndex = getActiveStageIndex(selectedCase.work_type);
-                      const isPassed = idx <= activeIndex;
+                {/* ========================================================================= */}
+                {/* 6-STAGE INVESTIGATION WORKFLOW PROGRESSION TIMELINE */}
+                {/* ========================================================================= */}
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950/50 border border-indigo-500/30 shadow-xl space-y-4 font-mono">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-500/20 pb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                        <Sparkles className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h3 className="text-xs font-bold text-indigo-300 uppercase tracking-wider">
+                          INVESTIGATION WORKFLOW PROGRESSION
+                        </h3>
+                        <span className="text-[10px] text-slate-400">
+                          6-Stage Human-in-the-Loop Audit Trail
+                        </span>
+                      </div>
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-[10px] text-indigo-300 font-bold">
+                      AI Assists Investigation • Officer Makes Final Decision
+                    </div>
+                  </div>
+
+                  {/* 6-Stage Timeline Stepper */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-1">
+                    {[
+                      { step: 1, label: '1. SIGNAL DETECTED', icon: AlertTriangle, desc: 'Multi-signal flag' },
+                      { step: 2, label: '2. WHY FLAGGED', icon: ShieldAlert, desc: 'Plain-language why' },
+                      { step: 3, label: '3. EVIDENCE REVIEW', icon: FileText, desc: 'API metric audit' },
+                      { step: 4, label: '4. OFFICER VERIFY', icon: Clock, desc: 'Ground verification' },
+                      { step: 5, label: '5. CASE DOSSIER', icon: FolderCheck, desc: 'Formal tracking' },
+                      { step: 6, label: '6. HUMAN DECISION', icon: CheckCircle2, desc: 'Officer sign-off' },
+                    ].map((s) => {
+                      const Icon = s.icon;
+                      const getActiveStep = (status) => {
+                        if (status === 'VERIFIED' || status === 'DISMISSED' || status === 'ESCALATED') return 6;
+                        if (status === 'UNDER_REVIEW') return 4;
+                        return 5;
+                      };
+                      const currentStep = getActiveStep(selectedCase.status);
+                      const isCompleted = s.step <= currentStep;
+                      const isCurrent = s.step === currentStep;
+
                       return (
-                        <div key={stage} className="flex flex-col items-center text-center space-y-1">
-                          <div className={`w-full h-1.5 rounded-full transition-all ${isPassed ? 'bg-indigo-500' : 'bg-slate-800'}`} />
-                          <span className={`text-[9px] font-bold ${isPassed ? 'text-slate-200' : 'text-slate-600'}`}>
-                            {stage}
-                          </span>
+                        <div
+                          key={s.step}
+                          className={`p-3 rounded-xl border flex flex-col justify-between transition-all ${
+                            isCurrent
+                              ? 'bg-indigo-950/70 border-indigo-400 shadow-md shadow-indigo-500/20'
+                              : isCompleted
+                              ? 'bg-slate-900 border-indigo-500/40'
+                              : 'bg-slate-950/60 border-slate-800/80 opacity-60'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${
+                              isCurrent
+                                ? 'bg-indigo-500 text-white border-indigo-400'
+                                : isCompleted
+                                ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
+                                : 'bg-slate-900 text-slate-500 border-slate-800'
+                            }`}>
+                              STAGE 0{s.step}
+                            </span>
+                            <Icon className={`w-3.5 h-3.5 ${
+                              isCurrent ? 'text-indigo-300' : isCompleted ? 'text-indigo-400' : 'text-slate-600'
+                            }`} />
+                          </div>
+
+                          <div>
+                            <div className={`text-[10px] font-bold leading-tight ${
+                              isCurrent ? 'text-white' : isCompleted ? 'text-slate-200' : 'text-slate-500'
+                            }`}>
+                              {s.label}
+                            </div>
+                            <div className="text-[9px] text-slate-400 truncate mt-0.5">
+                              {s.desc}
+                            </div>
+                          </div>
+
+                          <div className="w-full h-1 bg-slate-950 rounded-full mt-2.5 overflow-hidden">
+                            <div className={`h-full rounded-full transition-all duration-300 ${
+                              isCompleted ? 'bg-indigo-500' : 'bg-transparent'
+                            }`} />
+                          </div>
                         </div>
                       );
                     })}
@@ -268,8 +344,76 @@ export const InvestigationPage = () => {
                   </div>
                 </div>
 
+                {/* LINKED CITIZEN EVIDENCE & INVESTIGATION REPORTS */}
+                <div className="space-y-3 font-mono">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      Linked Citizen Evidence & Field Reports
+                    </h4>
+                    <button
+                      onClick={() => navigate('/citizen-evidence')}
+                      className="text-[11px] text-emerald-400 underline hover:text-emerald-300 font-semibold cursor-pointer"
+                    >
+                      Audit All Citizen Reports →
+                    </button>
+                  </div>
+
+                  {(() => {
+                    const allEvidences = citizenEvidenceService.getEvidences();
+                    const linked = allEvidences.filter(
+                      (e) =>
+                        e.linked_case_id === selectedCase.case_id ||
+                        e.linked_work_id === `WORK-${selectedCase.source_row_id || selectedCase.work_id}`
+                    );
+
+                    if (linked.length === 0) {
+                      return (
+                        <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800 text-xs text-slate-400 flex items-center justify-between font-sans italic">
+                          <span>No verified citizen evidence explicitly linked to this case dossier yet.</span>
+                          <button
+                            onClick={() => navigate('/citizen-evidence')}
+                            className="text-xs font-mono font-bold text-amber-400 underline not-italic hover:text-amber-300 cursor-pointer"
+                          >
+                            + Review & Link Evidence
+                          </button>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className="space-y-2">
+                        {linked.map((ev) => (
+                          <div
+                            key={ev.evidence_id}
+                            className="p-3.5 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-1.5 text-xs"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-amber-400">{ev.evidence_id}</span>
+                                <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                                  ev.status === 'VERIFIED' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                                }`}>
+                                  {ev.status === 'PENDING_VERIFICATION' ? 'UNVERIFIED — PENDING HUMAN VERIFICATION' : ev.status}
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-slate-400">{ev.incident_datetime}</span>
+                            </div>
+
+                            <div className="font-bold text-slate-200 font-sans">{ev.title}</div>
+                            <p className="text-slate-300 text-[11px] font-sans leading-relaxed">{ev.description}</p>
+                            <div className="text-[10px] text-slate-400">
+                              Location: {ev.location_address} ({ev.coordinates})
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
+
                 {/* RECOMMENDED VERIFICATION PROTOCOL ACTION */}
-                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between">
+                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between font-mono">
                   <div className="flex items-center gap-2.5">
                     <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
                     <div>
@@ -279,41 +423,72 @@ export const InvestigationPage = () => {
                   </div>
                 </div>
 
-                {/* Case Status Action Bar */}
-                <div className="pt-4 border-t border-slate-800 space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Update Case Lifecycle Status</h4>
-                  <div className="flex flex-wrap gap-2 font-mono">
-                    {['OPEN', 'UNDER_REVIEW', 'VERIFIED', 'DISMISSED', 'ESCALATED'].map((st) => (
+                {/* ========================================================================= */}
+                {/* HUMAN OFFICER DECISION CONTROLS */}
+                {/* ========================================================================= */}
+                <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4 font-mono">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-100 flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        STAGE 6: HUMAN OFFICER FINAL DECISION
+                      </h4>
+                      <p className="text-[11px] text-slate-400 font-sans mt-0.5">
+                        AI assists investigation. The oversight officer makes the final decision.
+                      </p>
+                    </div>
+                    <span className="text-[10px] px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-300 font-bold uppercase">
+                      Current Case Status: <strong className="text-indigo-400">{selectedCase.status}</strong>
+                    </span>
+                  </div>
+
+                  {/* Decision Status Buttons */}
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                    {[
+                      { status: 'OPEN', label: 'OPEN CASE', color: 'hover:bg-slate-800 text-slate-300 border-slate-700' },
+                      { status: 'UNDER_REVIEW', label: 'UNDER REVIEW', color: 'hover:bg-indigo-900/50 text-indigo-300 border-indigo-500/40' },
+                      { status: 'VERIFIED', label: 'MARK VERIFIED', color: 'hover:bg-emerald-900/50 text-emerald-300 border-emerald-500/40' },
+                      { status: 'DISMISSED', label: 'DISMISS CASE', color: 'hover:bg-slate-800 text-slate-400 border-slate-700' },
+                      { status: 'ESCALATED', label: 'ESCALATE AUDIT', color: 'hover:bg-rose-900/50 text-rose-300 border-rose-500/40' },
+                    ].map((item) => (
                       <button
-                        key={st}
-                        onClick={() => handleUpdateStatus(st)}
-                        className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wider transition-all cursor-pointer ${
-                          selectedCase.status === st
-                            ? 'bg-indigo-600 text-white shadow-md'
-                            : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200 hover:bg-slate-800'
+                        key={item.status}
+                        onClick={() => handleUpdateStatus(item.status)}
+                        className={`p-3 rounded-xl border text-center transition-all cursor-pointer font-bold flex flex-col items-center justify-center gap-1 ${
+                          selectedCase.status === item.status
+                            ? 'bg-indigo-600 text-white border-indigo-400 shadow-lg shadow-indigo-600/30'
+                            : `bg-slate-900 ${item.color}`
                         }`}
                       >
-                        Set {st}
+                        <span>{item.label}</span>
+                        <span className="text-[9px] font-normal opacity-70">
+                          {selectedCase.status === item.status ? 'Current Active' : 'Officer Action'}
+                        </span>
                       </button>
                     ))}
                   </div>
 
-                  {/* Add Audit Note */}
-                  <div className="flex gap-2 pt-2">
-                    <input
-                      type="text"
-                      placeholder="Add official audit investigation note..."
-                      value={noteText}
-                      onChange={(e) => setNoteText(e.target.value)}
-                      className="flex-1 px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors"
-                    />
-                    <button
-                      onClick={() => handleUpdateStatus(selectedCase.status)}
-                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all cursor-pointer shadow-md shrink-0"
-                    >
-                      <Send className="w-3.5 h-3.5" />
-                      <span>Post Note</span>
-                    </button>
+                  {/* Audit Note Entry */}
+                  <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase block">
+                      Official Audit Investigation Note
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter official officer verification notes, sanction numbers, or ground audit findings..."
+                        value={noteText}
+                        onChange={(e) => setNoteText(e.target.value)}
+                        className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors font-sans"
+                      />
+                      <button
+                        onClick={() => handleUpdateStatus(selectedCase.status)}
+                        className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all cursor-pointer shadow-md shrink-0 font-mono"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                        <span>Post Note</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -16,7 +16,7 @@ from ml.risk_fusion import fuse_risk_scores
 router = APIRouter(prefix="/api/risk", tags=["Live Risk Evaluation"])
 
 @router.post("/analyze-work/{id}", response_model=RiskResultDetail)
-def analyze_real_work(id: int, work_type: str = Query("RECOMMENDED", regex="^(RECOMMENDED|COMPLETED)$")):
+def analyze_real_work(id: int, work_type: str = Query("RECOMMENDED", pattern="^(RECOMMENDED|COMPLETED)$")):
     """Calculates live risk for an existing real database work using PostgreSQL peer baselines."""
     with get_db_cursor() as cur:
         if work_type == "RECOMMENDED":

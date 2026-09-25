@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Shield, Database, Bell, Compass, Menu, X, Home, Map, ShieldAlert, FileCheck, Clock, Building2, FolderSearch, BarChart3, FolderCheck, FileText, Workflow } from 'lucide-react';
+import { Search, Shield, Database, Bell, Compass, Menu, X, Home, Map, ShieldAlert, FileCheck, Clock, Building2, FolderSearch, BarChart3, FolderCheck, FileText, Workflow, ShieldCheck } from 'lucide-react';
 import { useNavigate, NavLink } from 'react-router-dom';
 
 const MOBILE_STAGES = [
@@ -12,6 +12,7 @@ const MOBILE_STAGES = [
   { path: '/works', label: 'Works Explorer', icon: FolderSearch },
   { path: '/analytics', label: 'Analytics Lab', icon: BarChart3 },
   { path: '/investigations', label: 'Case Workspace', icon: FolderCheck },
+  { path: '/citizen-evidence', label: 'Citizen Evidence', icon: ShieldCheck },
   { path: '/reports', label: 'Official Briefs', icon: FileText },
   { path: '/methodology', label: 'Methodology', icon: Workflow },
 ];
@@ -56,6 +57,16 @@ export const Header = () => {
 
       {/* Right System Indicators */}
       <div className="flex items-center gap-3">
+        {/* Citizen Evidence CTA */}
+        <NavLink
+          to="/citizen-evidence"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold transition-all cursor-pointer"
+          title="Submit or View Citizen Evidence Reports"
+        >
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+          <span className="hidden sm:inline">Citizen Evidence</span>
+        </NavLink>
+
         {/* Engine Status Badge */}
         <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">
           <Database className="w-3.5 h-3.5 text-emerald-400" />

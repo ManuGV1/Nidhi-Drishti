@@ -1,0 +1,15 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.terminal.activateEnvironment": true,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    ".pytest_cache": true
+  },
+  "task.allowAutomaticTasks": "on",
+  "terminal.integrated.tabs.enabled": true,
+  "editor.formatOnSave": false,
+  "[python]": {
+    "editor.defaultFormatter": null
+  }
+}

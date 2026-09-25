@@ -12,7 +12,8 @@ import {
   FileCheck,
   Clock,
   Building2,
-  Home
+  Home,
+  ShieldCheck
 } from 'lucide-react';
 
 const NAV_STAGES = [
@@ -87,6 +88,12 @@ const NAV_STAGES = [
         label: 'Case Workspace',
         badgeLabel: 'DOSSIER',
         icon: FolderCheck,
+      },
+      {
+        path: '/citizen-evidence',
+        label: 'Citizen Evidence',
+        badgeLabel: 'PUBLIC',
+        icon: ShieldCheck,
       },
       {
         path: '/reports',

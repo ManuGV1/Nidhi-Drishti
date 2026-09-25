@@ -267,13 +267,6 @@ export const IndiaMap = ({
 
   const getFillColor = (stateItem) => {
     const info = getStateInfo(stateItem.code, stateItem.name);
-    const isSelected =
-      selectedState?.state_code === info?.state_code ||
-      selectedState?.state_name === info?.state_name;
-    const isHovered = hoveredState?.code === stateItem.code;
-
-    if (isSelected) return '#f59e0b';
-    if (isHovered) return '#6366f1';
     if (!info) return '#1e293b';
 
     const mode = modeColors[activeMode] || modeColors.ALLOCATION;
@@ -292,7 +285,7 @@ export const IndiaMap = ({
     if (activeMode === 'ALLOCATION') {
       const amt = info.total_allocation_inr;
       if (amt) {
-        const formatted = amt >= 1e7 ? `₹${(amt / 1e7).toFixed(1)} Cr` : `₹${(amt / 1e5).toFixed(1)} L`;
+        const formatted = amt >= 1e7 ? `₹${(amt / 1e7).toFixed(2)} Cr` : `₹${(amt / 1e5).toFixed(2)} Lakh`;
         lines.push(`Allocation: ${formatted}`);
       }
       if (info.recommended_works_count) lines.push(`${info.recommended_works_count.toLocaleString('en-IN')} Works`);
@@ -313,98 +306,73 @@ export const IndiaMap = ({
   const tooltipColor = { ALLOCATION: 'text-emerald-400', ACTIVITY: 'text-indigo-400', COMPLETION: 'text-teal-400', RISK: 'text-rose-400' };
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center p-2">
-      {/* Floating State Tooltip */}
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-2 select-none">
+      {/* Floating Analytical State Tooltip */}
       {hoveredState && (() => {
         const info = getStateInfo(hoveredState.code, hoveredState.name);
         const lines = getTooltipLines(info);
         return (
-          <div className="absolute top-2 left-2 z-30 pointer-events-none px-3.5 py-2 rounded-xl bg-slate-950/95 border border-slate-700 text-xs shadow-2xl backdrop-blur-md space-y-0.5 min-w-[160px]">
-            <div className="font-bold text-slate-100 font-sans">{hoveredState.name}</div>
+          <div className="absolute top-2 left-2 z-30 pointer-events-none px-4 py-2.5 rounded-xl bg-slate-950/95 border border-amber-500/30 text-xs shadow-2xl backdrop-blur-md space-y-1 min-w-[180px]">
+            <div className="flex items-center justify-between">
+              <span className="font-extrabold text-slate-100 font-sans">{hoveredState.name}</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">
+                {hoveredState.code}
+              </span>
+            </div>
             {lines.map((line, i) => (
-              <div key={i} className={`text-[11px] font-mono ${i === 0 ? 'text-slate-400' : tooltipColor[activeMode] || 'text-amber-400'}`}>
+              <div key={i} className={`text-[11px] font-sans ${i === 0 ? 'text-slate-400' : tooltipColor[activeMode] || 'text-amber-400 font-bold'}`}>
                 {line}
               </div>
             ))}
-            <div className="text-[10px] text-slate-600 font-mono mt-0.5">Click to drill down →</div>
+            <div className="text-[10px] text-amber-300/80 font-sans font-semibold pt-1 border-t border-slate-800 flex items-center justify-between">
+              <span>STATE → DISTRICTS → WORKS</span>
+              <span>Click →</span>
+            </div>
           </div>
         );
       })()}
 
-      {/* Dynamic Mode Legend Overlay */}
-      <div className="absolute bottom-2 right-2 z-20 px-3 py-2 rounded-xl bg-slate-950/90 border border-slate-800 text-[10px] font-mono text-slate-300 flex flex-col gap-1 shadow-lg">
-        <div className="font-bold text-slate-200 tracking-wider uppercase text-[9px] border-b border-slate-800 pb-1">
-          {activeMode} SCALE
+      {/* Selected State Badge Notification */}
+      {selectedState && (
+        <div className="absolute top-2 right-2 z-20 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-xs font-sans text-amber-300 flex items-center gap-2 shadow-lg backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>Selected: <strong>{selectedState.state_name}</strong></span>
         </div>
-        <div className="flex items-center gap-1.5 pt-0.5">
-          {activeMode === 'ALLOCATION' && (
-            <>
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#0d4429] inline-block" title=">₹200 Cr" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#065f46] inline-block" title=">₹50 Cr" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#047857] inline-block" title=">₹10 Cr" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#10b981] inline-block" title=">₹1 Cr" />
-              <span className="text-slate-400 font-mono ml-1">High → Low Allocation</span>
-            </>
-          )}
-          {activeMode === 'ACTIVITY' && (
-            <>
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#1e1b4b] inline-block" title=">3000 Works" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#3730a3] inline-block" title=">1500 Works" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#4f46e5] inline-block" title=">800 Works" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#818cf8] inline-block" title=">200 Works" />
-              <span className="text-slate-400 font-mono ml-1">High → Low Volume</span>
-            </>
-          )}
-          {activeMode === 'COMPLETION' && (
-            <>
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#083344] inline-block" title=">1200 Completed" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#0e7490] inline-block" title=">600 Completed" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#06b6d4] inline-block" title=">250 Completed" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#22d3ee] inline-block" title=">50 Completed" />
-              <span className="text-slate-400 font-mono ml-1">High → Low Completed</span>
-            </>
-          )}
-          {activeMode === 'RISK' && (
-            <>
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#7f1d1d] inline-block" title=">60 Anomaly Signals" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#991b1b] inline-block" title=">30 Anomaly Signals" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#dc2626] inline-block" title=">12 Anomaly Signals" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#f87171] inline-block" title=">4 Anomaly Signals" />
-              <span className="text-slate-400 font-mono ml-1">Critical → Moderate Risk</span>
-            </>
-          )}
-        </div>
-      </div>
+      )}
 
+      {/* Interactive GeoJSON SVG Map */}
       <svg
         viewBox="0 0 650 700"
-        className="w-full max-h-[580px] object-contain drop-shadow-2xl"
+        className="w-full min-h-[320px] sm:min-h-[440px] max-h-[580px] object-contain drop-shadow-2xl transition-all duration-300"
       >
         <g stroke="#090d16" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round">
           {DETAILED_INDIA_STATES.map((s) => {
             const info = getStateInfo(s.code, s.name);
             const isSelected =
               selectedState?.state_code === info?.state_code ||
-              selectedState?.state_name === info?.state_name;
+              selectedState?.state_name === info?.state_name ||
+              selectedState?.state_code === s.code ||
+              selectedState?.state_name === s.name;
+            const isHovered = hoveredState?.code === s.code;
 
             return (
               <motion.path
                 key={s.code}
                 d={s.path}
                 fill={getFillColor(s)}
-                stroke={isSelected ? '#f59e0b' : '#090d16'}
-                strokeWidth={isSelected ? 2.5 : 1.2}
+                stroke={isSelected ? '#f59e0b' : isHovered ? '#60a5fa' : '#0f172a'}
+                strokeWidth={isSelected ? 2.8 : isHovered ? 2.0 : 1.2}
                 initial={{ opacity: 0.9 }}
-                whileHover={{ scale: 1.012, opacity: 1 }}
+                whileHover={{ scale: 1.018, opacity: 1 }}
                 transition={{ duration: 0.15 }}
-                className="cursor-pointer transition-colors"
+                className={`cursor-pointer transition-colors duration-150 ${isSelected ? 'drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]' : ''}`}
                 onMouseEnter={() => setHoveredState(s)}
                 onMouseLeave={() => setHoveredState(null)}
+                onTouchStart={() => setHoveredState(s)}
                 onClick={() => {
-                  if (info && onSelectState) {
-                    onSelectState(info);
-                  } else if (onSelectState) {
-                    onSelectState({ state_code: s.code, state_name: s.name, district_count: 1 });
+                  const targetInfo = info || { state_code: s.code, state_name: s.name, district_count: 1 };
+                  if (onSelectState) {
+                    onSelectState(targetInfo);
                   }
                 }}
               >

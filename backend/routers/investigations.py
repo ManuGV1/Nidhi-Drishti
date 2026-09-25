@@ -13,7 +13,7 @@ from backend.schemas import CreateCaseRequest, UpdateCaseRequest, CaseDetail
 router = APIRouter(prefix="/api/investigations", tags=["Investigation Center"])
 
 @router.get("", response_model=List[CaseDetail])
-def get_cases(status: Optional[str] = Query(None, regex="^(OPEN|UNDER_REVIEW|VERIFIED|DISMISSED|ESCALATED)$")):
+def get_cases(status: Optional[str] = Query(None, pattern="^(OPEN|UNDER_REVIEW|VERIFIED|DISMISSED|ESCALATED)$")):
     with get_db_cursor() as cur:
         if status:
             cur.execute("SELECT * FROM public.investigation_cases WHERE status = %s ORDER BY case_id DESC;", (status,))

@@ -4,10 +4,11 @@ import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { ErrorAlert } from '../components/common/ErrorAlert';
 import { WorkIntelligenceModal } from '../components/works/WorkIntelligenceModal';
 import { Search, Filter, ChevronLeft, ChevronRight, Eye, Building2, MapPin, Layers, FolderSearch } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 
 export const WorksExplorerPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { id: urlWorkId } = useParams();
   const navigate = useNavigate();
 
   const [works, setWorks] = useState([]);
@@ -21,6 +22,13 @@ export const WorksExplorerPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedWorkItem, setSelectedWorkItem] = useState(null);
+  const [activeUrlWorkId, setActiveUrlWorkId] = useState(urlWorkId || null);
+
+  useEffect(() => {
+    if (urlWorkId) {
+      setActiveUrlWorkId(urlWorkId);
+    }
+  }, [urlWorkId]);
 
   useEffect(() => {
     apiService.getStates().then((res) => setStatesList(res || [])).catch(() => {});
@@ -61,7 +69,7 @@ export const WorksExplorerPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-6 font-sans min-h-screen">
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
         <div>
@@ -174,7 +182,11 @@ export const WorksExplorerPage = () => {
                 {works.map((w) => (
                   <tr
                     key={w.id}
-                    onClick={() => setSelectedWorkItem(w)}
+                    onClick={() => {
+                      setSelectedWorkItem(w);
+                      setActiveUrlWorkId(w.id);
+                      navigate(`/works/${w.id}`, { replace: false });
+                    }}
                     className="hover:bg-slate-800/40 transition-colors cursor-pointer group"
                   >
                     <td className="py-4 px-4 font-mono text-slate-400 group-hover:text-slate-200">{w.id}</td>
@@ -194,7 +206,11 @@ export const WorksExplorerPage = () => {
                     </td>
                     <td className="py-4 px-4 text-center" onClick={(e) => e.stopPropagation()}>
                       <button
-                        onClick={() => setSelectedWorkItem(w)}
+                        onClick={() => {
+                          setSelectedWorkItem(w);
+                          setActiveUrlWorkId(w.id);
+                          navigate(`/works/${w.id}`, { replace: false });
+                        }}
                         className="px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 text-indigo-400 border border-slate-800 transition-colors cursor-pointer text-xs font-semibold flex items-center gap-1 mx-auto"
                         title="Examine Work Intelligence Dossier"
                       >
@@ -237,12 +253,22 @@ export const WorksExplorerPage = () => {
 
       {/* WORK INTELLIGENCE DOSSIER MODAL */}
       <WorkIntelligenceModal
-        isOpen={!!selectedWorkItem}
-        onClose={() => setSelectedWorkItem(null)}
-        workId={selectedWorkItem?.id}
+        isOpen={!!selectedWorkItem || !!activeUrlWorkId}
+        onClose={() => {
+          setSelectedWorkItem(null);
+          setActiveUrlWorkId(null);
+          if (urlWorkId) {
+            navigate('/works');
+          }
+        }}
+        workId={activeUrlWorkId || selectedWorkItem?.id || selectedWorkItem?.source_row_id}
         workType={selectedWorkItem?.work_type || workType}
         anomalyItem={selectedWorkItem}
-        onInitiateCase={() => navigate('/investigations')}
+        onInitiateCase={() => {
+          setSelectedWorkItem(null);
+          setActiveUrlWorkId(null);
+          navigate('/investigations');
+        }}
       />
     </div>
   );

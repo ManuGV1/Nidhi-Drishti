@@ -37,6 +37,8 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Cinzel"', '"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Cinzel"', '"Playfair Display"', 'Georgia', 'serif'],
       }
     },
   },

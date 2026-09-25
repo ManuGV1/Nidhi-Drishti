@@ -1,7 +1,10 @@
-"""
-NIDHIDRISHTI — FastAPI Intelligence Platform Core
-Entrypoint registering CORS middleware and all intelligence routers.
-"""
+import sys
+import os
+
+# Ensure project root directory is in sys.path when running main.py directly
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,10 +17,13 @@ app = FastAPI(
     description="Production-Quality Intelligence Platform Core for NIDHIDRISHTI (MPLADS Transparency & Risk Engine)"
 )
 
-# CORS Configuration for UI frontend integration (supporting any LAN IP / localhost origin)
+# CORS Configuration for UI frontend integration (supporting Vercel production deployment & local development)
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "").strip()
+allowed_origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins if allowed_origins else ["*"],
     allow_origin_regex=r"https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
@@ -44,4 +50,12 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", "8000"))
+    reload_mode = os.getenv("RELOAD", "false").lower() == "true"
+
+    if reload_mode:
+        uvicorn.run("backend.main:app", host=host, port=port, reload=True)
+    else:
+        uvicorn.run(app, host=host, port=port)
+
