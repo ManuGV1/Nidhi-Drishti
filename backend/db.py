@@ -197,58 +197,68 @@ class InvestigationNoteModel(Base):
 def ensure_database_seeded():
     """Hook to automatically create tables and safely seed the database if empty."""
     try:
-        Base.metadata.create_all(bind=engine)
-        logger.info("Base.metadata.create_all completed.")
-        
-        with get_db_cursor() as cur:
-            cur.execute("""
-                SELECT EXISTS (
-                    SELECT 1 FROM information_schema.tables 
-                    WHERE table_schema = 'public' AND table_name = 'works_all'
-                );
-            """)
-            has_works_table = cur.fetchone()['exists']
-            
-            works_cnt = 0
-            if has_works_table:
-                cur.execute("SELECT COUNT(*) AS cnt FROM public.works_all;")
-                works_cnt = cur.fetchone()['cnt']
-                
-            cur.execute("""
-                SELECT EXISTS (
-                    SELECT 1 FROM information_schema.tables 
-                    WHERE table_schema = 'public' AND table_name = 'risk_anomaly_results'
-                );
-            """)
-            has_risk_table = cur.fetchone()['exists']
-            
-            risk_cnt = 0
-            if has_risk_table:
-                cur.execute("SELECT COUNT(*) AS cnt FROM public.risk_anomaly_results;")
-                risk_cnt = cur.fetchone()['cnt']
-                
-            if works_cnt > 0 and risk_cnt > 0:
-                logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results.")
-                try:
-                    from scripts.migrate_risk_schema import migrate_risk_schema
-                    migrate_risk_schema()
-                except Exception as e:
-                    logger.warning(f"Index migration notice: {e}")
-                return
+        try:
+            Base.metadata.create_all(bind=engine)
+            logger.info("Base.metadata.create_all completed.")
+        except Exception as table_err:
+            logger.warning(f"Table DDL creation notice: {table_err}")
 
-        logger.info("Database unseeded or missing risk results. Loading real datasets...")
-        from scripts.load_database import load_data
-        load_data()
-        
-        from scripts.load_nirikshan import main as load_nirikshan_main
-        load_nirikshan_main()
-        
-        from scripts.migrate_risk_schema import migrate_risk_schema
-        migrate_risk_schema()
-        
-        from ml.pipeline import run_intelligence_pipeline
-        run_id, summary = run_intelligence_pipeline()
-        logger.info(f"Auto-seed completed successfully. Run ID: {run_id}")
+        works_cnt = 0
+        risk_cnt = 0
+
+        try:
+            with get_db_cursor() as cur:
+                cur.execute("""
+                    SELECT EXISTS (
+                        SELECT 1 FROM information_schema.tables 
+                        WHERE table_schema = 'public' AND table_name = 'works_all'
+                    );
+                """)
+                if cur.fetchone()['exists']:
+                    cur.execute("SELECT COUNT(*) AS cnt FROM public.works_all;")
+                    works_cnt = cur.fetchone()['cnt']
+                    
+                cur.execute("""
+                    SELECT EXISTS (
+                        SELECT 1 FROM information_schema.tables 
+                        WHERE table_schema = 'public' AND table_name = 'risk_anomaly_results'
+                    );
+                """)
+                if cur.fetchone()['exists']:
+                    cur.execute("SELECT COUNT(*) AS cnt FROM public.risk_anomaly_results;")
+                    risk_cnt = cur.fetchone()['cnt']
+        except Exception as check_err:
+            logger.warning(f"Database count check notice: {check_err}")
+                
+        if works_cnt > 0 and risk_cnt > 0:
+            logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results. Skipping seed.")
+            return
+
+        logger.info("Database unseeded or missing risk results. Loading real datasets safely...")
+        try:
+            from scripts.load_database import load_data
+            load_data()
+        except Exception as e:
+            logger.warning(f"Dataset load notice: {e}")
+
+        try:
+            from scripts.load_nirikshan import main as load_nirikshan_main
+            load_nirikshan_main()
+        except Exception as e:
+            logger.warning(f"Nirikshan load notice: {e}")
+
+        try:
+            from scripts.migrate_risk_schema import migrate_risk_schema
+            migrate_risk_schema()
+        except Exception as e:
+            logger.warning(f"Schema migration notice: {e}")
+
+        try:
+            from ml.pipeline import run_intelligence_pipeline
+            run_id, summary = run_intelligence_pipeline()
+            logger.info(f"Auto-seed completed successfully. Run ID: {run_id}")
+        except Exception as e:
+            logger.warning(f"ML Pipeline execution notice: {e}")
         
     except Exception as e:
         logger.warning(f"Database auto-seeding notice: {e}")
