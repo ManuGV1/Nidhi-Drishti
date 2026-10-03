@@ -43,8 +43,14 @@ app.add_middleware(
 from backend.db import engine, Base, init_db, ensure_database_seeded
 
 @app.on_event("startup")
-def startup_event():
-    """Automatic database table creation and safe seeding hook on startup."""
+async def startup_event():
+    """
+    Automatic database table creation and non-blocking seeding hook.
+
+    DDL + count check run synchronously (< 10 ms on warm restarts).
+    Heavy seeding (data load + ML pipeline) runs in a daemon thread when
+    the database is empty, so Uvicorn's health-check timeout is never hit.
+    """
     try:
         ensure_database_seeded()
     except Exception as e:

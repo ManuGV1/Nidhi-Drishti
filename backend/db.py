@@ -194,77 +194,119 @@ class InvestigationNoteModel(Base):
     action_taken = Column(String(100))
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-def ensure_database_seeded():
-    """Hook to automatically create tables and safely seed the database if empty."""
+def _is_database_seeded() -> tuple[int, int]:
+    """Fast count check — returns (works_cnt, risk_cnt). Never raises."""
+    works_cnt, risk_cnt = 0, 0
     try:
-        try:
-            Base.metadata.create_all(bind=engine)
-            logger.info("Base.metadata.create_all completed.")
-        except Exception as table_err:
-            logger.warning(f"Table DDL creation notice: {table_err}")
+        with get_db_cursor() as cur:
+            cur.execute("""
+                SELECT EXISTS (
+                    SELECT 1 FROM information_schema.tables
+                    WHERE table_schema = 'public' AND table_name = 'works_all'
+                );
+            """)
+            if cur.fetchone()['exists']:
+                cur.execute("SELECT COUNT(*) AS cnt FROM public.works_all;")
+                works_cnt = cur.fetchone()['cnt']
 
-        works_cnt = 0
-        risk_cnt = 0
+            cur.execute("""
+                SELECT EXISTS (
+                    SELECT 1 FROM information_schema.tables
+                    WHERE table_schema = 'public' AND table_name = 'risk_anomaly_results'
+                );
+            """)
+            if cur.fetchone()['exists']:
+                cur.execute("SELECT COUNT(*) AS cnt FROM public.risk_anomaly_results;")
+                risk_cnt = cur.fetchone()['cnt']
+    except Exception as check_err:
+        logger.warning(f"Database count check notice: {check_err}")
+    return works_cnt, risk_cnt
 
-        try:
-            with get_db_cursor() as cur:
-                cur.execute("""
-                    SELECT EXISTS (
-                        SELECT 1 FROM information_schema.tables 
-                        WHERE table_schema = 'public' AND table_name = 'works_all'
-                    );
-                """)
-                if cur.fetchone()['exists']:
-                    cur.execute("SELECT COUNT(*) AS cnt FROM public.works_all;")
-                    works_cnt = cur.fetchone()['cnt']
-                    
-                cur.execute("""
-                    SELECT EXISTS (
-                        SELECT 1 FROM information_schema.tables 
-                        WHERE table_schema = 'public' AND table_name = 'risk_anomaly_results'
-                    );
-                """)
-                if cur.fetchone()['exists']:
-                    cur.execute("SELECT COUNT(*) AS cnt FROM public.risk_anomaly_results;")
-                    risk_cnt = cur.fetchone()['cnt']
-        except Exception as check_err:
-            logger.warning(f"Database count check notice: {check_err}")
-                
-        if works_cnt > 0 and risk_cnt > 0:
-            logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results. Skipping seed.")
-            return
 
-        logger.info("Database unseeded or missing risk results. Loading real datasets safely...")
-        try:
-            from scripts.load_database import load_data
-            load_data()
-        except Exception as e:
-            logger.warning(f"Dataset load notice: {e}")
+def _run_background_seed():
+    """
+    Heavy seeding pipeline — runs in a daemon thread so FastAPI startup
+    returns immediately. Each step is wrapped in its own try-except so a
+    single failure does not abort the rest.
+    """
+    logger.info("[BG-SEED] Background seeding thread started.")
 
-        try:
-            from scripts.load_nirikshan import main as load_nirikshan_main
-            load_nirikshan_main()
-        except Exception as e:
-            logger.warning(f"Nirikshan load notice: {e}")
-
-        try:
-            from scripts.migrate_risk_schema import migrate_risk_schema
-            migrate_risk_schema()
-        except Exception as e:
-            logger.warning(f"Schema migration notice: {e}")
-
-        try:
-            from ml.pipeline import run_intelligence_pipeline
-            run_id, summary = run_intelligence_pipeline()
-            logger.info(f"Auto-seed completed successfully. Run ID: {run_id}")
-        except Exception as e:
-            logger.warning(f"ML Pipeline execution notice: {e}")
-        
+    try:
+        from scripts.load_database import load_data
+        load_data()
+        logger.info("[BG-SEED] load_data() completed.")
     except Exception as e:
-        logger.warning(f"Database auto-seeding notice: {e}")
+        logger.warning(f"[BG-SEED] Dataset load notice: {e}")
+
+    try:
+        from scripts.load_nirikshan import main as load_nirikshan_main
+        load_nirikshan_main()
+        logger.info("[BG-SEED] load_nirikshan completed.")
+    except Exception as e:
+        logger.warning(f"[BG-SEED] Nirikshan load notice: {e}")
+
+    try:
+        from scripts.migrate_risk_schema import migrate_risk_schema
+        migrate_risk_schema()
+        logger.info("[BG-SEED] migrate_risk_schema completed.")
+    except Exception as e:
+        logger.warning(f"[BG-SEED] Schema migration notice: {e}")
+
+    try:
+        from ml.pipeline import run_intelligence_pipeline
+        run_id, summary = run_intelligence_pipeline()
+        logger.info(f"[BG-SEED] ML pipeline completed. Run ID: {run_id}")
+    except Exception as e:
+        logger.warning(f"[BG-SEED] ML Pipeline execution notice: {e}")
+
+    logger.info("[BG-SEED] Background seeding thread finished.")
+
+
+def ensure_database_seeded():
+    """
+    FastAPI startup hook.
+
+    Synchronous (fast) phase:
+      1. Run Base.metadata.create_all() to create missing tables (DDL only).
+      2. Count rows in works_all and risk_anomaly_results.
+      3. If both are populated → return immediately (< 10 ms on Render restarts).
+
+    Asynchronous (background) phase:
+      4. If the database is empty, launch _run_background_seed() in a
+         daemon thread so the startup event returns without blocking Uvicorn's
+         health-check timeout.
+    """
+    import threading
+
+    # ── Step 1: DDL (fast — creates tables, skips if already exist) ──────────
+    try:
+        Base.metadata.create_all(bind=engine)
+        logger.info("Base.metadata.create_all completed.")
+    except Exception as table_err:
+        logger.warning(f"Table DDL creation notice: {table_err}")
+
+    # ── Step 2: Count check (fast) ────────────────────────────────────────────
+    works_cnt, risk_cnt = _is_database_seeded()
+
+    if works_cnt > 0 and risk_cnt > 0:
+        logger.info(
+            f"Database already seeded ({works_cnt} works, {risk_cnt} risk results). "
+            "Startup complete."
+        )
+        return
+
+    # ── Step 3: Background seeding (non-blocking) ─────────────────────────────
+    logger.info(
+        "Database appears empty — launching background seeding thread. "
+        "FastAPI will serve requests immediately; data will be available "
+        "once seeding completes."
+    )
+    t = threading.Thread(target=_run_background_seed, daemon=True, name="db-seed")
+    t.start()
+
 
 def init_db():
-    """Hook to automatically create missing tables and seed data on startup."""
+    """Alias kept for backward compatibility."""
     ensure_database_seeded()
 
 # 2. Existing psycopg2 Raw SQL helper functions
