@@ -57,23 +57,28 @@ def get_risk_results(
         total_records = cur.fetchone()["count"]
 
         data_query = f"""
-            SELECT r.anomaly_id, r.run_id::text, r.work_type, r.source_row_id, r.work_id,
-                   r.nirikshan_id, r.nirikshan_completed_id, r.source_dataset,
-                   r.risk_score, r.risk_level, r.risk_category, r.reason_codes,
-                   r.evidence_json, r.feature_values_json, r.peer_stats_json,
-                   r.detector_version, r.calculated_at,
+            WITH paged_risks AS (
+                SELECT r.anomaly_id, r.run_id::text, r.work_type, r.source_row_id, r.work_id,
+                       r.nirikshan_id, r.nirikshan_completed_id, r.source_dataset,
+                       r.risk_score, r.risk_level, r.risk_category, r.reason_codes,
+                       r.evidence_json, r.feature_values_json, r.peer_stats_json,
+                       r.detector_version, r.calculated_at
+                FROM public.risk_anomaly_results r
+                {where_sql}
+                ORDER BY r.risk_score DESC, r.anomaly_id ASC
+                LIMIT %s OFFSET %s
+            )
+            SELECT r.*,
                    COALESCE(w.work_title, wc.work_description, nr.work_description, nc.work_description, nr.activity_name, nc.activity_name) AS work_title,
                    COALESCE(w.state_name, wc.state_name, nr.state_name, nc.state_name) AS state_name,
                    COALESCE(w.constituency_name, wc.constituency_name, nr.constituency, nc.constituency) AS constituency_name,
                    COALESCE(w.allocation_amount, wc.final_amount, nr.recommended_amount, nc.actual_amount) AS amount
-            FROM public.risk_anomaly_results r
+            FROM paged_risks r
             LEFT JOIN public.works_all w ON r.source_row_id = w.source_row_id AND r.work_type = 'RECOMMENDED'
             LEFT JOIN public.works_completed wc ON r.work_id = wc.work_id AND r.work_type = 'COMPLETED'
             LEFT JOIN public.nirikshan_recommended nr ON r.nirikshan_id = nr.nirikshan_id AND r.work_type = 'NIRIKSHAN_RECOMMENDED'
             LEFT JOIN public.nirikshan_completed nc ON r.nirikshan_completed_id = nc.nirikshan_id AND r.work_type = 'NIRIKSHAN_COMPLETED'
-            {where_sql}
-            ORDER BY r.risk_score DESC, r.anomaly_id ASC
-            LIMIT %s OFFSET %s;
+            ORDER BY r.risk_score DESC, r.anomaly_id ASC;
         """
         cur.execute(data_query, params + [limit, offset])
         rows = cur.fetchall()

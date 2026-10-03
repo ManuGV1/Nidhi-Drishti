@@ -228,7 +228,12 @@ def ensure_database_seeded():
                 risk_cnt = cur.fetchone()['cnt']
                 
             if works_cnt > 0 and risk_cnt > 0:
-                logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results. Skipping seed.")
+                logger.info(f"Database already seeded with {works_cnt} works and {risk_cnt} risk results.")
+                try:
+                    from scripts.migrate_risk_schema import migrate_risk_schema
+                    migrate_risk_schema()
+                except Exception as e:
+                    logger.warning(f"Index migration notice: {e}")
                 return
 
         logger.info("Database unseeded or missing risk results. Loading real datasets...")

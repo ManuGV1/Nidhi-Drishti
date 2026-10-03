@@ -21,8 +21,8 @@ _DEFAULT_DATA = OverviewResponse(
     critical_risk_count=1446
 )
 
-_CACHE_DATA = _DEFAULT_DATA
-_CACHE_TIME = time.time()
+_CACHE_DATA = None
+_CACHE_TIME = 0.0
 _CACHE_TTL = 300.0  # Cache for 5 minutes
 
 @router.get("", response_model=OverviewResponse)

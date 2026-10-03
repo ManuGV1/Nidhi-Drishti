@@ -74,8 +74,17 @@ def migrate_risk_schema(conn=None):
         CREATE UNIQUE INDEX IF NOT EXISTS uq_risk_run_nirikshan_comp 
         ON public.risk_anomaly_results (run_id, nirikshan_completed_id) 
         WHERE nirikshan_completed_id IS NOT NULL;
+
+        CREATE INDEX IF NOT EXISTS idx_risk_score_anomaly 
+        ON public.risk_anomaly_results (risk_score DESC, anomaly_id ASC);
+
+        CREATE INDEX IF NOT EXISTS idx_risk_level_score_anomaly 
+        ON public.risk_anomaly_results (risk_level, risk_score DESC, anomaly_id ASC);
+
+        CREATE INDEX IF NOT EXISTS idx_risk_worktype_score_anomaly 
+        ON public.risk_anomaly_results (work_type, risk_score DESC, anomaly_id ASC);
     """)
-    print("Added partial unique indexes for all 4 work types.")
+    print("Added partial unique indexes and performance composite indexes.")
 
     conn.commit()
     cur.close()
