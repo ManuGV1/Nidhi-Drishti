@@ -13,30 +13,30 @@ router = APIRouter(prefix="/api", tags=["Geography"])
 def get_all_states():
     with get_db_cursor() as cur:
         cur.execute("""
-            SELECT s.state_code, s.state_name AS state_name,
+            SELECT s.state_code, s.state_name_english AS state_name,
                    COUNT(DISTINCT d.district_code) AS district_count
             FROM public.lgd_states s
             LEFT JOIN public.lgd_districts d ON d.state_code = s.state_code
-            GROUP BY s.state_code, s.state_name
-            ORDER BY s.state_name ASC;
+            GROUP BY s.state_code, s.state_name_english
+            ORDER BY s.state_name_english ASC;
         """)
         return cur.fetchall()
 
 @router.get("/states/{state_code}", response_model=Dict[str, Any])
 def get_state_detail(state_code: int):
     with get_db_cursor() as cur:
-        cur.execute("SELECT state_code, state_name AS state_name FROM public.lgd_states WHERE state_code = %s;", (state_code,))
+        cur.execute("SELECT state_code, state_name_english AS state_name FROM public.lgd_states WHERE state_code = %s;", (state_code,))
         state_row = cur.fetchone()
         if not state_row:
             raise HTTPException(status_code=404, detail="State not found.")
 
-        cur.execute("SELECT district_code, district_name AS district_name FROM public.lgd_districts WHERE state_code = %s ORDER BY district_name ASC;", (state_code,))
+        cur.execute("SELECT district_code, district_name_english AS district_name FROM public.lgd_districts WHERE state_code = %s ORDER BY district_name_english ASC;", (state_code,))
         districts_rows = cur.fetchall()
 
         cur.execute("""
             SELECT COUNT(*) AS recommended_count, COALESCE(SUM(allocation_amount), 0) AS total_allocation
             FROM public.works_all w
-            JOIN public.lgd_states s ON UPPER(w.state_name) = UPPER(s.state_name)
+            JOIN public.lgd_states s ON UPPER(w.state_name) = UPPER(s.state_name_english)
             WHERE s.state_code = %s;
         """, (state_code,))
         works_summary = cur.fetchone()
